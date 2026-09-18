@@ -1,0 +1,92 @@
+/**
+ * Design tokens Home.
+ * Значения подтверждены spec/home-layout.json и spec/home-summary.json
+ * (Figma «Личный кабинет (Copy)», узлы 1:15 и 18:967).
+ */
+
+:root {
+  /* surfaces */
+  --home-surface-page: #f8fafb;
+  --home-surface-card: #fff;
+  --home-surface-accent-soft: #eaf4f6;
+  --home-surface-muted: #f4f4f5;
+
+  /* text */
+  --home-text-strong: #1a2332;
+  --home-text-muted: #71717a;
+  --home-text-subtle: #a1a1aa;
+  --home-text-inverse: #fff;
+
+  /* brand */
+  --home-brand: #2491aa;
+  --home-brand-deep: #1a7488;
+  --home-brand-gradient: linear-gradient(180deg, #2491aa 0%, #1a7488 100%);
+
+  /* borders */
+  --home-border-neutral: #e4e4e7;
+  --home-border-soft: #e2edf0;
+  --home-border-accent: #c7e3ea;
+  --home-border-strong: #d4d4d8;
+  --home-border-row: #f0f2f5;
+
+  /* status */
+  --home-danger: #ef4444;
+  --home-danger-deep: #9a0606; /* Figma node 270:8196 — только мобильный бейдж чата */
+
+  /* radius */
+  --home-radius-card: 16px;
+  --home-radius-balance: 20px;
+  --home-radius-control: 8px;
+  --home-radius-checkbox: 4px;
+  --home-radius-pill: 99px;
+
+  /* spacing */
+  --home-space-2: 2px;
+  --home-space-4: 4px;
+  --home-space-6: 6px;
+  --home-space-8: 8px;
+  --home-space-12: 12px;
+  --home-space-16: 16px;
+  --home-space-20: 20px;
+  --home-space-24: 24px;
+  --home-space-32: 32px;
+  --home-space-40: 40px;
+  --home-space-gutter-desktop: 72px;
+  --home-space-gutter-mobile: 16px;
+
+  /* elevation */
+  --home-shadow-steps: 0 2px 8px rgb(26 35 50 / 6.2745%);
+  --home-shadow-checklist: 0 4px 16px rgb(26 35 50 / 3.1373%);
+  --home-shadow-balance: 0 8px 24px rgb(36 145 170 / 18.8235%);
+  --home-shadow-round-action: 0 4px 8px rgb(36 145 170 / 25.098%);
+  --home-shadow-round-icon: 0 4px 8px rgb(36 145 170 / 18.8235%);
+  --home-shadow-chat: 0 0 14.2222px 3.5556px rgb(36 145 170 / 70%);
+
+  /* typography */
+  --home-font-family-banner: geist, inter, system-ui, sans-serif;
+  --home-font-family: inter, system-ui, -apple-system, 'Segoe UI', roboto, sans-serif;
+
+  /*
+   * Имя токена = стиль в Figma. Значение = вес, которым этот стиль реально
+   * растеризован в эталонах (см. font-weight в home-reference/home.svg:
+   * «Semi Bold» экспортируется как 500, «Medium» — как 400, «Bold» — как 600).
+   * Расхождение задокументировано в docs/ADR-0001-typography.md.
+   */
+  --home-weight-light: 300;
+  --home-weight-regular: 400;
+  --home-weight-medium: 400;
+  --home-weight-semibold: 500;
+  --home-weight-bold: 600;
+
+  /* layout anchors */
+  --home-content-max: 1296px;
+  --home-column-main: 792px;
+  --home-column-side: 464px;
+  --home-header-height-desktop: 111px;
+  --home-header-height-mobile: 62px;
+  --home-bottom-nav-height: 62px;
+
+  /* z-index */
+  --home-z-bottom-nav: 20;
+  --home-z-floating-chat: 30;
+}

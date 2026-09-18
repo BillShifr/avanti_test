@@ -1,0 +1,129 @@
+{
+  "source": "Figma «Личный кабинет (Copy)», Home 1:15 / home-mobile 18:967",
+  "assets": [
+    {
+      "file": "shared/logo_mark.svg",
+      "figmaNode": "1:23",
+      "origin": "vector-export"
+    },
+    {
+      "file": "shared/chat_bubble.svg",
+      "figmaNode": "1:44",
+      "origin": "vector-export"
+    },
+    {
+      "file": "shared/profile_avatar.jpg",
+      "figmaNode": "1:51",
+      "origin": "raster-export",
+      "resizedTo": "96x96"
+    },
+    {
+      "file": "shared/check_white.svg",
+      "figmaNode": "1:72",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/check_white_bold.svg",
+      "figmaNode": "246:4412",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/upload_teal.svg",
+      "figmaNode": "1:95",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/pen_grey.svg",
+      "figmaNode": "1:103",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/chart_white.svg",
+      "figmaNode": "246:4406",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/shield_white.svg",
+      "figmaNode": "246:4417",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/user_white.svg",
+      "figmaNode": "246:4428",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/arrow_white.svg",
+      "figmaNode": "246:4939",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/arrow_grey.svg",
+      "figmaNode": "246:4456",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/chevron_up_grey.svg",
+      "figmaNode": "246:4400",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/lock_white.svg",
+      "figmaNode": "246:4923",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "shared/bank_teal.svg",
+      "figmaNode": "1:120",
+      "origin": "lucide-geometry"
+    },
+    {
+      "file": "desktop/nav_home.svg",
+      "figmaNode": "1:29",
+      "origin": "vector-export"
+    },
+    {
+      "file": "desktop/nav_documents.svg",
+      "figmaNode": "1:34",
+      "origin": "vector-export"
+    },
+    {
+      "file": "desktop/nav_profile.svg",
+      "figmaNode": "1:39",
+      "origin": "vector-export"
+    },
+    {
+      "file": "mobile/bell.svg",
+      "figmaNode": "83:2084",
+      "origin": "vector-export"
+    },
+    {
+      "file": "mobile/nav_home.svg",
+      "figmaNode": "57:1678",
+      "origin": "vector-export"
+    },
+    {
+      "file": "mobile/nav_documents.svg",
+      "figmaNode": "57:1683",
+      "origin": "vector-export"
+    },
+    {
+      "file": "mobile/nav_profile.svg",
+      "figmaNode": "57:1688",
+      "origin": "vector-export"
+    },
+    {
+      "file": "mobile/chat_avatar.png",
+      "figmaNode": "270:8193",
+      "origin": "raster-export",
+      "resizedTo": "128x128"
+    },
+    {
+      "file": "shared/arrow_thin_teal.svg",
+      "figmaNode": "1:122",
+      "origin": "glyph-substitute",
+      "note": "Символ U+2192 отсутствует в latin-подмножестве Inter, поэтому стрелка CTA вынесена в SVG для детерминированного рендера."
+    }
+  ],
+  "note": "origin=vector-export — путь взят без изменений из Figma SVG-рендера экрана; origin=lucide-geometry — иконка Lucide, геометрия которой совпадает с Figma-узлом (совпадают bbox и stroke), потому что рабочий SVG-экспорт этих узлов в пакете дизайна отсутствует."
+}
