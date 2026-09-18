@@ -56,9 +56,13 @@ function handleClick(): void {
   inset: -3px;
 }
 
+/*
+ * Размеры — полный контур экспортированного вектора (Figma 83:2084 даёт
+ * геометрию 19 × 23.75 px, обводка добавляет по 1.187 px с каждой стороны).
+ */
 .home-notifications__icon {
-  width: 19px;
-  height: 23.75px;
+  width: 21.375px;
+  height: 26.125px;
 }
 
 .home-notifications__badge {

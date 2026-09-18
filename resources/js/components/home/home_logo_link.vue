@@ -27,7 +27,11 @@ withDefaults(
   align-items: center;
   color: #000;
   font-weight: var(--home-weight-bold);
-  letter-spacing: -0.05em;
+
+  --home-tracking: -0.05em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
   white-space: nowrap;
 }
 
@@ -52,12 +56,15 @@ withDefaults(
   width: 104px; /* Figma node 18:970 */
   height: 29px;
   gap: 6px;
+  align-items: flex-end;
   color: var(--home-text-strong);
   font-size: 22px;
   line-height: 27px;
 }
 
+/* Figma 18:972 прижат к верху фрейма, 18:971 — к низу. */
 .home-logo--mobile .home-logo__mark {
+  align-self: flex-start;
   width: 34px; /* Figma node 18:972 */
   height: 26px;
 }

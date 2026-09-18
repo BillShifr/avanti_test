@@ -39,6 +39,11 @@ const iconSource = computed<string>(() => STATE_ICONS[props.state])
   align-items: center;
 }
 
+/* Figma node 57:1918: в мобильной композиции текущий шаг приглушён. */
+.home-step--current {
+  opacity: 0.8;
+}
+
 /* Базовая композиция — мобильная (Figma 57:1902), десктоп переопределяется ниже. */
 .home-step__circle {
   display: flex;
@@ -110,6 +115,11 @@ const iconSource = computed<string>(() => STATE_ICONS[props.state])
 @media (width >= 768px) {
   .home-step {
     width: 108px; /* Figma node 1:67 */
+  }
+
+  /* Десктопный узел 1:90 приглушения не имеет. */
+  .home-step--current {
+    opacity: 1;
   }
 
   .home-step__circle {

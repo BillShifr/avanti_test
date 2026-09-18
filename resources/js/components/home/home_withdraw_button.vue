@@ -53,8 +53,17 @@ function handleWithdraw(): void {
   background-color: var(--home-surface-page);
 }
 
+/*
+ * Недоступная CTA: Figma 1:117 гасит сам фрейм до 0.5, а в растровых эталонах
+ * содержимое приглушено ещё раз — иконка, подпись и стрелка идут поверх
+ * подложки с той же прозрачностью 0.5.
+ */
 .home-withdraw--disabled {
   cursor: default;
+  opacity: 0.5;
+}
+
+.home-withdraw--disabled > * {
   opacity: 0.5;
 }
 
@@ -71,7 +80,11 @@ function handleWithdraw(): void {
   color: transparent;
   font-size: 16px;
   font-weight: var(--home-weight-semibold);
-  letter-spacing: 0.002em;
+
+  --home-tracking: 0.002em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
   line-height: 19px;
 }
 

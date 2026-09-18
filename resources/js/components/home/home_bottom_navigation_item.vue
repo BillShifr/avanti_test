@@ -52,7 +52,6 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   align-items: center;
   justify-content: center;
   border-radius: var(--home-radius-control);
-  background-color: var(--home-surface-muted);
   color: var(--home-text-strong);
   font-size: 14px;
   font-weight: var(--home-weight-medium);
@@ -66,8 +65,8 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   inset: -2px -6px;
 }
 
+/* В растровом эталоне 95:4429 подложка активного пункта не отрисована. */
 .home-bottom-item__link--active {
-  background-color: var(--home-surface-accent-soft);
   color: var(--home-brand);
   font-weight: var(--home-weight-semibold);
 }
@@ -86,7 +85,9 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
 }
 
 .home-bottom-item__link--support {
+  width: 108px; /* Figma node 57:1765 — фиксированная ширина фрейма */
   height: 43px;
+  box-sizing: border-box;
   padding: 4px 16px;
   background-color: var(--home-brand);
   color: var(--home-text-inverse);
@@ -95,13 +96,20 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   line-height: 15px;
 }
 
+/* Figma 57:1769 — текстовый узел шириной 76 px с выключкой влево. */
+.home-bottom-item__link--support .home-bottom-item__label {
+  width: 76px;
+  text-align: left;
+}
+
 .home-bottom-item__link--support .home-bottom-item__icon {
   width: 16px;
   height: 16px;
 }
 
+/* Figma 57:2047: геометрия 12 × 12 px, полный контур обводки — 13.091 px. */
 .home-bottom-item__link--support .home-bottom-item__icon img {
-  width: 12px;
-  height: 12px;
+  width: 13.091px;
+  height: 13.091px;
 }
 </style>

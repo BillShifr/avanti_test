@@ -95,6 +95,7 @@ const connectorClasses = computed<readonly string[]>(() =>
 .home-steps__line {
   width: 100%;
   height: 2px;
+  flex: none;
 }
 
 .home-steps__connector--done .home-steps__line {

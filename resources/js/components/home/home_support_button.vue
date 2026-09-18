@@ -53,9 +53,10 @@ const accessibleName = computed<string>(() =>
   flex: none;
 }
 
+/* Figma 1:44: геометрия 14 × 14 px, обводка расширяет контур до 15.273 px. */
 .home-support__icon img {
-  width: 14px;
-  height: 14px;
+  width: 15.273px;
+  height: 15.273px;
 }
 
 .home-support__badge {
