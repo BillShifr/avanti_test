@@ -1,89 +1,52 @@
 /*
- * Self-hosted Inter (@fontsource/inter 5.3.0, latin subset).
+ * Self-hosted Inter (@fontsource-variable/inter 5.3.0, latin subset).
  *
- * ascent/descent-override возвращают базовую линию туда, где её ставит Figma:
- * растровые эталоны используют строку 1.21em с базовой линией на 0.855em,
- * тогда как Chrome по метрикам hhea Inter кладёт её на 0.969em.
- * Без override весь текст опускается на ~2 CSS px. См. docs/ADR-0001-typography.md.
+ * Переменное начертание с осями wght и opsz — макет нарисован именно им:
+ * пер-глифовые advance-таблицы из home-reference/home.svg совпадают с
+ * инстансом opsz=32 при заявленном в Figma letter-spacing. Статические
+ * начертания Inter соответствуют opsz=14 и растягивают крупный текст
+ * («€ 12 000» — на 10 px). Поэтому включён font-optical-sizing: auto.
+ *
+ * ascent/descent-override ставят базовую линию туда же, где её ставит Figma:
+ * сумма 87% + 34% = 121% сохраняет высоту строки 1.21em (метрики hhea Inter),
+ * поэтому явные line-height из макета продолжают задавать те же боксы.
+ * См. docs/ADR-0001-typography.md.
  */
 
 @font-face {
   font-family: inter;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 100 900;
   font-display: block;
-  ascent-override: 85.5%;
-  descent-override: 35.5%;
+  ascent-override: 87%;
+  descent-override: 34%;
   line-gap-override: 0%;
-  src: url('../fonts/inter/inter-300.woff2') format('woff2');
+  src: url('../fonts/inter/inter-variable.woff2') format('woff2-variations');
   unicode-range:
     u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+0304, u+0308, u+0329,
     u+2000-206f, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd;
 }
 
-@font-face {
-  font-family: inter;
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  ascent-override: 85.5%;
-  descent-override: 35.5%;
-  line-gap-override: 0%;
-  src: url('../fonts/inter/inter-400.woff2') format('woff2');
-  unicode-range:
-    u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+0304, u+0308, u+0329,
-    u+2000-206f, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd;
-}
-
-@font-face {
-  font-family: inter;
-  font-style: normal;
-  font-weight: 500;
-  font-display: block;
-  ascent-override: 85.5%;
-  descent-override: 35.5%;
-  line-gap-override: 0%;
-  src: url('../fonts/inter/inter-500.woff2') format('woff2');
-  unicode-range:
-    u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+0304, u+0308, u+0329,
-    u+2000-206f, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd;
-}
-
-@font-face {
-  font-family: inter;
-  font-style: normal;
-  font-weight: 600;
-  font-display: block;
-  ascent-override: 85.5%;
-  descent-override: 35.5%;
-  line-gap-override: 0%;
-  src: url('../fonts/inter/inter-600.woff2') format('woff2');
-  unicode-range:
-    u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+0304, u+0308, u+0329,
-    u+2000-206f, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd;
-}
-
-@font-face {
-  font-family: inter;
-  font-style: normal;
-  font-weight: 700;
-  font-display: block;
-  ascent-override: 85.5%;
-  descent-override: 35.5%;
-  line-gap-override: 0%;
-  src: url('../fonts/inter/inter-700.woff2') format('woff2');
-  unicode-range:
-    u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+0304, u+0308, u+0329,
-    u+2000-206f, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd;
-}
-
-/* Geist — только баннер прогресса (Figma 246:4940 / 57:1074). */
+/*
+ * Geist — только баннер прогресса (Figma 246:4940 / 57:1074).
+ *
+ * Используется официальный Geist от Vercel (пакет `geist`, v1.800), а не порт
+ * @fontsource: advance-таблицы из home-reference/home.svg совпадают именно с
+ * ним («Step ancora da completare» — 144.07 px против 144.29 px в макете,
+ * порт @fontsource даёт 146.47 px). Подмножество latin вырезано pyftsubset.
+ *
+ * Сумма ascent + descent сохраняет высоту строки Geist 1.30em, базовая линия
+ * приводится к позиции, которую использует Figma. См. docs/ADR-0001-typography.md.
+ */
 
 @font-face {
   font-family: geist;
   font-style: normal;
   font-weight: 400;
   font-display: block;
+  ascent-override: 86.5%;
+  descent-override: 43.5%;
+  line-gap-override: 0%;
   src: url('../fonts/geist/geist-400.woff2') format('woff2');
 }
 
@@ -92,6 +55,9 @@
   font-style: normal;
   font-weight: 500;
   font-display: block;
+  ascent-override: 86.5%;
+  descent-override: 43.5%;
+  line-gap-override: 0%;
   src: url('../fonts/geist/geist-500.woff2') format('woff2');
 }
 
@@ -100,6 +66,9 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
+  ascent-override: 86.5%;
+  descent-override: 43.5%;
+  line-gap-override: 0%;
   src: url('../fonts/geist/geist-600.woff2') format('woff2');
 }
 
@@ -108,5 +77,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: block;
+  ascent-override: 86.5%;
+  descent-override: 43.5%;
+  line-gap-override: 0%;
   src: url('../fonts/geist/geist-700.woff2') format('woff2');
 }

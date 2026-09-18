@@ -29,9 +29,17 @@ export default defineConfig({
     deviceScaleFactor: 1,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    ...(process.env.CHROMIUM_PATH === undefined
-      ? {}
-      : { launchOptions: { executablePath: process.env.CHROMIUM_PATH } }),
+    /*
+     * Figma экспортирует PNG с серым сглаживанием текста, Chromium по умолчанию
+     * использует субпиксельное (LCD). Без этого флага каждый край глифа даёт
+     * цветную бахрому и растровое сравнение шумит на ~0.4 п.п.
+     */
+    launchOptions: {
+      args: ['--disable-lcd-text'],
+      ...(process.env.CHROMIUM_PATH === undefined
+        ? {}
+        : { executablePath: process.env.CHROMIUM_PATH }),
+    },
   },
   projects: [
     {

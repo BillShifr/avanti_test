@@ -67,16 +67,40 @@
   --home-font-family: inter, system-ui, -apple-system, 'Segoe UI', roboto, sans-serif;
 
   /*
-   * Имя токена = стиль в Figma. Значение = вес, которым этот стиль реально
-   * растеризован в эталонах (см. font-weight в home-reference/home.svg:
-   * «Semi Bold» экспортируется как 500, «Medium» — как 400, «Bold» — как 600).
-   * Расхождение задокументировано в docs/ADR-0001-typography.md.
+   * Веса совпадают с именами стилей Figma. Проверено сверкой пер-глифовых
+   * advance-таблиц из home-reference/home.svg с метриками Inter v4:
+   * «Documenti» (Medium) точно совпадает с весом 500, «Dati personali»
+   * (Semi Bold) — с весом 600. Атрибут font-weight в SVG-экспорте занижен
+   * на шаг и источником правды не является. См. docs/ADR-0001-typography.md.
    */
   --home-weight-light: 300;
   --home-weight-regular: 400;
-  --home-weight-medium: 400;
-  --home-weight-semibold: 500;
-  --home-weight-bold: 600;
+  --home-weight-medium: 500;
+  --home-weight-semibold: 600;
+  --home-weight-bold: 700;
+
+  /*
+   * Figma задаёт lineHeight 100%: расстояние между базовыми линиями равно
+   * кеглю. В CSS это line-height: 1, но тогда появляется отрицательный
+   * half-leading, равный (естественная высота строки − 1em) / 2.
+   * Токены возвращают первую строку на место: Inter — 1.21em, Geist — 1.30em.
+   */
+  --home-line-trim: 0.105em;
+  --home-line-trim-banner: 0.15em;
+
+  /*
+   * Трекинг. Figma распределяет letter-spacing симметрично: половина уходит
+   * перед первым глифом строки, половина — после последнего. CSS добавляет
+   * его только после каждого глифа, из-за чего строка едет вправо ровно на
+   * половину трекинга (для логотипа при −0.05em × 32px это 0.8px).
+   * Поэтому трекинг объявляется через --home-tracking, а правило рядом
+   * само считает компенсацию, и два значения не могут разойтись:
+   *
+   *   --home-tracking: -0.05em;
+   *   letter-spacing: var(--home-tracking);
+   *   text-indent: calc(var(--home-tracking) / 2);
+   */
+  --home-tracking: 0em;
 
   /* layout anchors */
   --home-content-max: 1296px;
