@@ -116,13 +116,21 @@
       "file": "mobile/chat_avatar.png",
       "figmaNode": "270:8193",
       "origin": "raster-export",
-      "resizedTo": "128x128"
+      "resizedTo": "128x128",
+      "crop": "квадрат 1040x1040 с центром (728, 542) исходника 1448x1086",
+      "note": "Figma применяет к заливке собственный crop-трансформ; параметры восстановлены по растровому эталону 18:967."
     },
     {
       "file": "shared/arrow_thin_teal.svg",
       "figmaNode": "1:122",
       "origin": "glyph-substitute",
       "note": "Символ U+2192 отсутствует в latin-подмножестве Inter, поэтому стрелка CTA вынесена в SVG для детерминированного рендера."
+    },
+    {
+      "file": "shared/arrow_white_compact.svg",
+      "figmaNode": "246:4445",
+      "origin": "lucide-geometry",
+      "note": "Стрелка текущего шага меньше и тоньше соседней (6.17 px против 8.17, обводка 1.125 против 2)."
     }
   ],
   "note": "origin=vector-export — путь взят без изменений из Figma SVG-рендера экрана; origin=lucide-geometry — иконка Lucide, геометрия которой совпадает с Figma-узлом (совпадают bbox и stroke), потому что рабочий SVG-экспорт этих узлов в пакете дизайна отсутствует."
