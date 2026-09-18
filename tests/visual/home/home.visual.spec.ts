@@ -11,21 +11,21 @@ const REFERENCE_DIR = fileURLToPath(new URL('../reference/', import.meta.url))
 const FIGMA_TARGET_RATIO = 0.0035
 
 /**
- * Фактический бюджет регрессии. Он выше целевого, потому что растеризация
- * глифов в Figma и в Chromium отличается: геометрия блоков совпадает с нулевым
- * допуском, а остаточная разница — субпиксельные края текста и иконок.
- * Разбор и план сведения к цели — в docs/ADR-0001-typography.md.
+ * Фактический бюджет регрессии. Desktop уложен в целевые 0.35 %. Mobile выше:
+ * при вчетверо меньшей площади та же абсолютная разница краёв глифов даёт
+ * втрое больший процент. Геометрия блоков при этом совпадает с нулевым
+ * допуском. Разбор остатка — в docs/ADR-0001-typography.md.
  */
 const CASES = {
   'chromium-desktop': {
     name: 'desktop',
     reference: 'home-desktop-1440x889.png',
-    budget: 0.016,
+    budget: FIGMA_TARGET_RATIO,
   },
   'chromium-mobile': {
     name: 'mobile',
     reference: 'home-mobile-390x1139.png',
-    budget: 0.04,
+    budget: 0.011,
   },
 } as const
 
