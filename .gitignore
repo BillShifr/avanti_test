@@ -1,0 +1,27 @@
+/node_modules
+/vendor
+/public/build
+/public/hot
+/public/storage
+/dist-preview
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/test-results
+/playwright-report
+/tests/visual/output
+.env
+.env.*
+!.env.example
+.DS_Store
+.phpunit.result.cache
+*.log
+
+# Пакет дизайна и исходный .fig не версионируются: размер и лицензия.
+# Эталонные PNG, нужные тестам, лежат в tests/visual/reference/.
+*.fig
+*.zip
+/home-reference/
+/home.png
