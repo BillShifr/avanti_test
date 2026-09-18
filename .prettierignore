@@ -1,0 +1,14 @@
+node_modules
+vendor
+public/build
+dist-preview
+pnpm-lock.yaml
+composer.lock
+resources/fonts
+resources/images
+home-reference
+tests/visual/reference
+test-results
+playwright-report
+*.fig
+*.zip

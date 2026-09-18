@@ -1,0 +1,132 @@
+name: CI
+
+on:
+  push:
+    branches: [main, staging, 'codex/**']
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+  PHP_VERSION: '8.4'
+  PLAYWRIGHT_VERSION: '1.63.0'
+
+jobs:
+  frontend-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm run lint:css
+      - run: pnpm run format:check
+      - run: pnpm run structure
+
+  php-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+      - uses: ramsey/composer-install@v3
+        with:
+          composer-options: '--no-interaction --prefer-dist'
+      - run: ./vendor/bin/pint --test
+      - run: ./vendor/bin/phpstan analyse --memory-limit=1G --no-progress
+
+  unit-feature:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: xdebug
+      - uses: ramsey/composer-install@v3
+        with:
+          composer-options: '--no-interaction --prefer-dist'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec vitest run --coverage
+      - run: ./vendor/bin/pest
+
+  builds:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build:laravel
+      - run: pnpm run build:preview
+      - name: production bundle не содержит эталонных PNG экрана
+        run: |
+          ! grep -rl "home-1440x889\|home-mobile-390x1139" public/build dist-preview
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: builds
+          path: |
+            public/build
+            dist-preview
+
+  e2e:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright test --grep-invert @visual
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: e2e-report
+          path: |
+            playwright-report
+            test-results
+
+  visual-a11y:
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright test --grep @visual
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-artifacts
+          path: |
+            tests/visual/output
+            playwright-report
+            test-results

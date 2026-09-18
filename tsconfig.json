@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["vite/client", "node"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "env.d.ts",
+    "resources/js/**/*.ts",
+    "resources/js/**/*.vue",
+    "preview/**/*.ts",
+    "tests/frontend/**/*.ts",
+    "tests/e2e/**/*.ts",
+    "tests/visual/**/*.ts",
+    "tools/**/*.d.mts",
+    "*.config.ts"
+  ],
+  "exclude": ["node_modules", "dist-preview", "public/build", "vendor"]
+}

@@ -1,0 +1,20 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "overrides": [
+    {
+      "files": ["**/*.vue"],
+      "customSyntax": "postcss-html"
+    }
+  ],
+  "ignoreFiles": ["node_modules/**", "vendor/**", "dist-preview/**", "public/build/**"],
+  "rules": {
+    "no-descending-specificity": null,
+    "selector-class-pattern": "^home(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+    "custom-property-pattern": "^home-[a-z0-9-]+$",
+    "declaration-property-value-no-unknown": true,
+    "media-feature-range-notation": "context",
+    "color-hex-length": "short",
+    "import-notation": "string",
+    "property-no-vendor-prefix": null
+  }
+}

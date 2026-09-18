@@ -1,0 +1,36 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: prettier
+      glob: '*.{js,ts,mjs,vue,css,json,md,yml,yaml}'
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+    - name: eslint
+      glob: '*.{js,ts,mjs,vue}'
+      run: pnpm exec eslint --fix --max-warnings 0 {staged_files}
+      stage_fixed: true
+    - name: stylelint
+      glob: '*.{css,vue}'
+      run: pnpm exec stylelint --fix {staged_files}
+      stage_fixed: true
+    - name: pint
+      glob: '*.php'
+      run: ./vendor/bin/pint --dirty
+      stage_fixed: true
+    - name: structure
+      glob: 'resources/js/**/*.vue'
+      run: node tools/structure_check.mjs
+
+pre-push:
+  parallel: false
+  jobs:
+    - name: frontend-quality
+      run: pnpm run quality:frontend
+    - name: php-quality
+      run: composer quality
+    - name: build-laravel
+      run: pnpm run build:laravel
+    - name: build-preview
+      run: pnpm run build:preview
+    - name: e2e-smoke
+      run: pnpm exec playwright test --grep-invert @visual --project=chromium-desktop
