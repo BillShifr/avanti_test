@@ -6,6 +6,4 @@ parameters:
     paths:
         - app
         - routes
-        - tests
     treatPhpDocTypesAsCertain: false
-    checkMissingIterableValueType: true

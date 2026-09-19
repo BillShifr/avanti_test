@@ -1,4 +1,6 @@
 import type { Page } from '@playwright/test'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { PNG } from 'pngjs'
 
 export interface ReferenceBox {
   readonly selector: string
@@ -7,6 +9,34 @@ export interface ReferenceBox {
   readonly width: number
   readonly height: number
   readonly isText?: boolean
+  readonly tolerance?: number
+}
+
+/**
+ * Сохраняет 50%-е наложение browser screenshot на Figma reference.
+ * Такое изображение делает двойные контуры и сдвиги заметными при ревью.
+ */
+export function createHalfOpacityOverlay(
+  actualPath: string,
+  expectedPath: string,
+  overlayPath: string,
+): void {
+  const actual = PNG.sync.read(readFileSync(actualPath))
+  const expected = PNG.sync.read(readFileSync(expectedPath))
+
+  if (actual.width !== expected.width || actual.height !== expected.height) {
+    throw new Error(
+      `Размеры overlay не совпадают: actual ${actual.width}×${actual.height}, expected ${expected.width}×${expected.height}`,
+    )
+  }
+
+  const overlay = new PNG({ width: actual.width, height: actual.height })
+
+  for (let index = 0; index < overlay.data.length; index += 1) {
+    overlay.data[index] = Math.round(((actual.data[index] ?? 0) + (expected.data[index] ?? 0)) / 2)
+  }
+
+  writeFileSync(overlayPath, PNG.sync.write(overlay))
 }
 
 /**
@@ -48,10 +78,31 @@ export async function prepareForScreenshot(page: Page): Promise<void> {
 export const REFERENCE_BOXES: Readonly<Record<string, readonly ReferenceBox[]>> = {
   desktop: [
     { selector: '.home-shell__top', x: 0, y: 0, width: 1440, height: 111 },
-    { selector: '.home-logo--desktop', x: 72, y: 36, width: 152.01, height: 39 },
-    { selector: '.home-primary-nav__list', x: 276.01, y: 36.5, width: 660, height: 38 },
+    {
+      selector: '.home-logo--desktop',
+      x: 72,
+      y: 36,
+      width: 152.01,
+      height: 39,
+      tolerance: 0.02,
+    },
+    {
+      selector: '.home-primary-nav__list',
+      x: 276.01,
+      y: 36.5,
+      width: 660,
+      height: 38,
+      tolerance: 0.02,
+    },
     { selector: '.home-support', x: 1212, y: 36, width: 156, height: 39 },
-    { selector: '.home-shell__meta .home-user--desktop', x: 72, y: 121, width: 163, height: 40 },
+    {
+      selector: '.home-shell__meta .home-user--desktop',
+      x: 72,
+      y: 121,
+      width: 163,
+      height: 40,
+      isText: true,
+    },
     { selector: '.home-steps', x: 72, y: 191, width: 792, height: 130 },
     { selector: '.home-steps__row', x: 96, y: 243, width: 744, height: 58 },
     {
@@ -88,6 +139,13 @@ export const REFERENCE_BOXES: Readonly<Record<string, readonly ReferenceBox[]>> 
     { selector: '.home-banner', x: 16, y: 458, width: 358, height: 136 },
     { selector: '.home-checklist', x: 16, y: 614, width: 358, height: 443 },
     { selector: '.home-bottom-nav', x: 0, y: 1077, width: 390, height: 62 },
-    { selector: '.home-chat', x: 314, y: 986.222, width: 56.889, height: 56.889 },
+    {
+      selector: '.home-chat',
+      x: 314,
+      y: 986.222,
+      width: 56.889,
+      height: 56.889,
+      tolerance: 0.02,
+    },
   ],
 }

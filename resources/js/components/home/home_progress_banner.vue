@@ -17,7 +17,7 @@ defineProps<{
 <template>
   <section class="home-banner" :aria-label="title">
     <span class="home-banner__lock">
-      <img :src="lockIcon" alt="" aria-hidden="true" />
+      <img :src="lockIcon" alt="" aria-hidden="true" width="24" height="24" />
     </span>
 
     <h2 class="home-banner__title">{{ title }}</h2>
@@ -38,7 +38,7 @@ defineProps<{
     </div>
 
     <a class="home-banner__action" :href="href" :aria-label="linkLabel">
-      <img :src="arrowWhite" alt="" aria-hidden="true" />
+      <img :src="arrowWhite" alt="" aria-hidden="true" width="24" height="24" />
     </a>
   </section>
 </template>

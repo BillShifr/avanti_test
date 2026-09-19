@@ -13,14 +13,20 @@ const props = defineProps<{
   isActive: boolean
 }>()
 
-const ICONS: Readonly<Record<HomeNavigationKey, string>> = {
-  home: navHome,
-  documents: navDocuments,
-  profile: navProfile,
-  support: chatBubble,
+interface NavigationIcon {
+  readonly source: string
+  readonly width: number
+  readonly height: number
 }
 
-const iconSource = computed<string>(() => ICONS[props.itemKey])
+const ICONS: Readonly<Record<HomeNavigationKey, NavigationIcon>> = {
+  home: { source: navHome, width: 14.445, height: 15.186 },
+  documents: { source: navDocuments, width: 12.962, height: 15.927 },
+  profile: { source: navProfile, width: 11.483, height: 14.445 },
+  support: { source: chatBubble, width: 15.273, height: 15.273 },
+}
+
+const icon = computed<NavigationIcon>(() => ICONS[props.itemKey])
 </script>
 
 <template>
@@ -35,7 +41,13 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
       :aria-current="isActive ? 'page' : undefined"
     >
       <span class="home-bottom-item__icon">
-        <img :src="iconSource" alt="" aria-hidden="true" />
+        <img
+          :src="icon.source"
+          alt=""
+          aria-hidden="true"
+          :width="icon.width"
+          :height="icon.height"
+        />
       </span>
       <span class="home-bottom-item__label">{{ label }}</span>
     </a>

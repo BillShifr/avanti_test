@@ -24,7 +24,14 @@ const iconSource = computed<string>(() => STATE_ICONS[props.state])
 <template>
   <li class="home-step" :class="`home-step--${state}`">
     <span class="home-step__circle">
-      <img class="home-step__icon" :src="iconSource" alt="" aria-hidden="true" />
+      <img
+        class="home-step__icon"
+        :src="iconSource"
+        alt=""
+        aria-hidden="true"
+        width="24"
+        height="24"
+      />
     </span>
     <span class="home-step__label">{{ shortLabel }}</span>
     <span class="home-step__sr">{{ label }} — {{ stateLabel }}</span>

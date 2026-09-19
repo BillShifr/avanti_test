@@ -1,9 +1,39 @@
 import { expect, test } from '@playwright/test'
+import type { TestInfo } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 const VIEWPORTS = [320, 375, 390, 768, 1024, 1280, 1440, 1920]
 
+function isMobileProject(testInfo: TestInfo): boolean {
+  return (testInfo.project.use.viewport?.width ?? 0) < 768
+}
+
 test.describe('Home', () => {
+  test('CLS остаётся в пределах 0.02 на чистой загрузке', async ({ page }) => {
+    await page.addInitScript(() => {
+      let cumulativeLayoutShift = 0
+
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (!Reflect.get(entry, 'hadRecentInput')) {
+            cumulativeLayoutShift += Number(Reflect.get(entry, 'value'))
+            Reflect.set(globalThis, '__homeCumulativeLayoutShift', cumulativeLayoutShift)
+          }
+        }
+      }).observe({ type: 'layout-shift', buffered: true })
+    })
+
+    await page.goto('/')
+    await page.evaluate(async () => document.fonts.ready)
+    await page.waitForTimeout(300)
+
+    const cumulativeLayoutShift = await page.evaluate(() =>
+      Number(Reflect.get(globalThis, '__homeCumulativeLayoutShift') ?? 0),
+    )
+
+    expect(cumulativeLayoutShift).toBeLessThanOrEqual(0.02)
+  })
+
   test('рендерится без ошибок и предупреждений в консоли', async ({ page }) => {
     const problems: string[] = []
 
@@ -21,7 +51,7 @@ test.describe('Home', () => {
   })
 
   test('основная навигация ведёт на именованные маршруты', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium-desktop', 'десктопная композиция')
+    test.skip(isMobileProject(testInfo), 'десктопная композиция')
 
     await page.goto('/')
 
@@ -47,7 +77,7 @@ test.describe('Home', () => {
   test('кнопка поддержки и бейдж уведомлений имеют доступные имена', async ({ page }, testInfo) => {
     await page.goto('/')
 
-    if (testInfo.project.name === 'chromium-desktop') {
+    if (!isMobileProject(testInfo)) {
       await expect(
         page.getByRole('link', { name: 'Assistenza, непрочитанных сообщений: 4' }),
       ).toBeVisible()
@@ -62,7 +92,7 @@ test.describe('Home', () => {
   })
 
   test('мобильная нижняя навигация и плавающий чат работают', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium-mobile', 'мобильная композиция')
+    test.skip(!isMobileProject(testInfo), 'мобильная композиция')
 
     await page.goto('/')
 

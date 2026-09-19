@@ -19,7 +19,7 @@ const accessibleName = computed<string>(() =>
 <template>
   <a class="home-support" :href="href" :aria-label="accessibleName">
     <span class="home-support__icon">
-      <img :src="chatBubble" alt="" aria-hidden="true" />
+      <img :src="chatBubble" alt="" aria-hidden="true" width="15" height="15" />
     </span>
     <span class="home-support__label">{{ label }}</span>
     <span v-if="hasBadge" class="home-support__badge" aria-hidden="true">{{ badgeLabel }}</span>

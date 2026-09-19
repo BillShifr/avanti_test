@@ -22,6 +22,7 @@ TypeScript strict · Vite 8 · нативный CSS**. Один и тот же `
 pnpm install --frozen-lockfile
 composer install --no-interaction --prefer-dist
 cp .env.example .env
+touch database/database.sqlite
 php artisan key:generate
 ```
 
@@ -105,13 +106,13 @@ Inertia props → `home_page.vue` → узкие компоненты. Eloquent 
   крупного блока против `spec/home-layout.json` (допуск 0 px для карточек,
   1 px для текстовых боксов), растровое отличие от PNG-эталонов Figma и
   браузерные regression-снимки с `maxDiffPixels: 0`.
-- `actual` / `expected` / `diff` складываются в `tests/visual/output/` и
+- `actual` / `expected` / `diff` / 50%-`overlay` складываются в `tests/visual/output/` и
   прикладываются к прогону как артефакты.
-- Достигнутое растровое отличие: **desktop 0.31 %**, **mobile 1.01 %**.
-  Целевые 0.35 % из `docs/QUALITY_GATES.md` §5 выполнены на desktop. На
-  mobile та же абсолютная разница краёв глифов приходится на вчетверо
-  меньшую площадь, поэтому в процентах она втрое выше. Все принятые решения
-  и разбор остатка — в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
+- Достигнутое растровое отличие: **desktop 0.104 %**, **mobile 0.332 %** —
+  оба viewport проходят единый лимит 0.35 % из `docs/QUALITY_GATES.md` §5.
+  Отдельная двунаправленная edge-проверка запрещает связные структурные
+  смещения больше 2 px. Калибровка и защита от ложноположительных/ложноотрицательных
+  результатов описаны в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
 
 ## Известные ограничения
 

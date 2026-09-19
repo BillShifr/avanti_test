@@ -31,7 +31,14 @@ function handleClick(): void {
     :aria-label="accessibleName"
     @click="handleClick"
   >
-    <img class="home-notifications__icon" :src="bellIcon" alt="" aria-hidden="true" />
+    <img
+      class="home-notifications__icon"
+      :src="bellIcon"
+      alt=""
+      aria-hidden="true"
+      width="21"
+      height="26"
+    />
     <span v-if="hasBadge" class="home-notifications__badge" aria-hidden="true">{{
       badgeLabel
     }}</span>

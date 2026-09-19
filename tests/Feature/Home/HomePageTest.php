@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use Inertia\Testing\AssertableInertia;
 
-it('отдаёт страницу home по именованному маршруту', function (): void {
+it('намеренно отдаёт публичный home гостю без auth redirect', function (): void {
+    $this->assertGuest();
+
     $this->get(route('home'))
         ->assertOk()
         ->assertInertia(fn (AssertableInertia $page) => $page->component('home/home_page'));

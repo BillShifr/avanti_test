@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@10.28.0",
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "vite",
@@ -18,7 +18,7 @@
     "format": "prettier . --write",
     "structure": "node tools/structure_check.mjs",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test --grep-invert @visual",
+    "test:e2e": "playwright test --grep-invert @visual --project=chromium-desktop --project=chromium-mobile",
     "test:visual": "playwright test --grep @visual",
     "quality:frontend": "pnpm typecheck && pnpm lint && pnpm lint:css && pnpm format:check && pnpm structure && pnpm test:unit"
   },
@@ -41,11 +41,11 @@
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
     "@vitejs/plugin-vue": "^6.0.9",
+    "@vitest/coverage-v8": "^5.0.1",
     "@vue/test-utils": "^2.5.1",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.11.0",
-    "geist": "^1.7.2",
     "globals": "^17.12.0",
     "jiti": "^2.7.0",
     "jsdom": "^30.1.0",

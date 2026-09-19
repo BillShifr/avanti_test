@@ -34,9 +34,23 @@ function handleWithdraw(): void {
     :aria-describedby="hint ? 'home-withdraw-hint' : undefined"
     @click="handleWithdraw"
   >
-    <img class="home-withdraw__icon" :src="bankIcon" alt="" aria-hidden="true" />
+    <img
+      class="home-withdraw__icon"
+      :src="bankIcon"
+      alt=""
+      aria-hidden="true"
+      width="24"
+      height="24"
+    />
     <span class="home-withdraw__label">{{ label }}</span>
-    <img class="home-withdraw__arrow" :src="arrowThin" alt="" aria-hidden="true" />
+    <img
+      class="home-withdraw__arrow"
+      :src="arrowThin"
+      alt=""
+      aria-hidden="true"
+      width="18"
+      height="22"
+    />
   </button>
 </template>
 

@@ -1,21 +1,19 @@
 import { expect, test } from '@playwright/test'
 import { mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { comparePng } from '../../../tools/pixel_diff.mjs'
-import { prepareForScreenshot, REFERENCE_BOXES } from '../../support/visual_helpers'
+import { comparePng, compareStructuralEdges } from '../../../tools/pixel_diff.mjs'
+import {
+  createHalfOpacityOverlay,
+  prepareForScreenshot,
+  REFERENCE_BOXES,
+} from '../../support/visual_helpers'
 
 const OUTPUT_DIR = fileURLToPath(new URL('../output/', import.meta.url))
 const REFERENCE_DIR = fileURLToPath(new URL('../reference/', import.meta.url))
 
-/** Целевой порог из docs/QUALITY_GATES.md §5. */
+/** Обязательный порог из docs/QUALITY_GATES.md §5 для обоих viewport. */
 const FIGMA_TARGET_RATIO = 0.0035
 
-/**
- * Фактический бюджет регрессии. Desktop уложен в целевые 0.35 %. Mobile выше:
- * при вчетверо меньшей площади та же абсолютная разница краёв глифов даёт
- * втрое больший процент. Геометрия блоков при этом совпадает с нулевым
- * допуском. Разбор остатка — в docs/ADR-0001-typography.md.
- */
 const CASES = {
   'chromium-desktop': {
     name: 'desktop',
@@ -25,7 +23,7 @@ const CASES = {
   'chromium-mobile': {
     name: 'mobile',
     reference: 'home-mobile-390x1139.png',
-    budget: 0.011,
+    budget: FIGMA_TARGET_RATIO,
   },
 } as const
 
@@ -46,7 +44,7 @@ test.describe('@visual Home', () => {
 
       expect(actual, `${box.selector} отсутствует`).not.toBeNull()
 
-      const tolerance = box.isText ? 1 : 0.6
+      const tolerance = box.tolerance ?? (box.isText ? 1 : 0)
 
       expect(Math.abs((actual?.x ?? 0) - box.x), `${box.selector} x`).toBeLessThanOrEqual(tolerance)
       expect(Math.abs((actual?.y ?? 0) - box.y), `${box.selector} y`).toBeLessThanOrEqual(tolerance)
@@ -69,11 +67,14 @@ test.describe('@visual Home', () => {
 
     const actualPath = `${OUTPUT_DIR}home-${current.name}-actual.png`
     const diffPath = `${OUTPUT_DIR}home-${current.name}-diff.png`
+    const overlayPath = `${OUTPUT_DIR}home-${current.name}-overlay.png`
     const expectedPath = `${REFERENCE_DIR}${current.reference}`
 
     await page.screenshot({ path: actualPath })
 
     const result = comparePng(actualPath, expectedPath, diffPath)
+    const structural = compareStructuralEdges(actualPath, expectedPath)
+    createHalfOpacityOverlay(actualPath, expectedPath, overlayPath)
 
     await testInfo.attach(`${current.name}-actual`, { path: actualPath, contentType: 'image/png' })
     await testInfo.attach(`${current.name}-expected`, {
@@ -81,6 +82,10 @@ test.describe('@visual Home', () => {
       contentType: 'image/png',
     })
     await testInfo.attach(`${current.name}-diff`, { path: diffPath, contentType: 'image/png' })
+    await testInfo.attach(`${current.name}-overlay`, {
+      path: overlayPath,
+      contentType: 'image/png',
+    })
 
     if (result.ratio > FIGMA_TARGET_RATIO) {
       testInfo.annotations.push({
@@ -93,6 +98,10 @@ test.describe('@visual Home', () => {
       result.ratio,
       `отличается ${result.differing} px (${(result.ratio * 100).toFixed(3)}%)`,
     ).toBeLessThanOrEqual(current.budget)
+    expect(
+      structural.violations,
+      `обнаружены связные края со смещением больше 2 px: ${JSON.stringify(structural.violations)}`,
+    ).toEqual([])
   })
 
   test('браузерный regression-снимок не изменился', async ({ page }, testInfo) => {

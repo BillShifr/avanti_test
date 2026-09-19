@@ -29,7 +29,7 @@ function handleToggle(): void {
     :aria-label="accessibleName"
     @click="handleToggle"
   >
-    <img :src="chevronUp" alt="" aria-hidden="true" />
+    <img :src="chevronUp" alt="" aria-hidden="true" width="24" height="24" />
   </button>
 </template>
 

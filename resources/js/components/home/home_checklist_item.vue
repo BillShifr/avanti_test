@@ -40,7 +40,7 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
 <template>
   <li class="home-check" :class="`home-check--${state}`">
     <span class="home-check__icon">
-      <img :src="leadingIcon" alt="" aria-hidden="true" />
+      <img :src="leadingIcon" alt="" aria-hidden="true" width="24" height="24" />
     </span>
 
     <span class="home-check__text">
@@ -54,10 +54,10 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
       :href="href"
       :aria-label="`${title}: ${description}`"
     >
-      <img :src="statusIcon" alt="" aria-hidden="true" />
+      <img :src="statusIcon" alt="" aria-hidden="true" width="24" height="24" />
     </a>
     <span v-else class="home-check__status">
-      <img :src="statusIcon" alt="" aria-hidden="true" />
+      <img :src="statusIcon" alt="" aria-hidden="true" width="24" height="24" />
     </span>
   </li>
 </template>
