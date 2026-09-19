@@ -108,11 +108,13 @@ Inertia props → `home_page.vue` → узкие компоненты. Eloquent 
   браузерные regression-снимки с `maxDiffPixels: 0`.
 - `actual` / `expected` / `diff` / 50%-`overlay` складываются в `tests/visual/output/` и
   прикладываются к прогону как артефакты.
-- Достигнутое растровое отличие: **desktop 0.104 %**, **mobile 0.332 %** —
+- Достигнутое отличие живого Chromium-снимка: **desktop 0.152 %**, **mobile 0.345 %** —
   оба viewport проходят единый лимит 0.35 % из `docs/QUALITY_GATES.md` §5.
   Отдельная двунаправленная edge-проверка запрещает связные структурные
   смещения больше 2 px. Калибровка и защита от ложноположительных/ложноотрицательных
   результатов описаны в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
+  Figma-fidelity и regression PNG закреплены на `macos-26`/CoreText; Linux/Skia
+  остаётся отдельным функциональным cross-browser gate.
 
 ## Известные ограничения
 

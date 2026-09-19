@@ -145,6 +145,13 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
   font-weight: var(--home-weight-regular);
 }
 
+@media (width < 768px) {
+  /* CoreText raster mobile-узлов 18:1054/1055 точнее совпадает при wght=520. */
+  .home-check--complete .home-check__description {
+    font-weight: 520;
+  }
+}
+
 .home-check__status {
   display: flex;
   width: 22px;

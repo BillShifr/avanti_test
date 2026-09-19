@@ -54,8 +54,8 @@ function writeMobileRegressionShape(
 
 describe('Figma pixel diff calibration', () => {
   it.each([
-    ['desktop', 'home-desktop-chromium-desktop-linux.png', 'home-desktop-1440x889.png'],
-    ['mobile', 'home-mobile-chromium-mobile-linux.png', 'home-mobile-390x1139.png'],
+    ['desktop', 'home-desktop-chromium-desktop-darwin.png', 'home-desktop-1440x889.png'],
+    ['mobile', 'home-mobile-chromium-mobile-darwin.png', 'home-mobile-390x1139.png'],
   ])('%s snapshot stays inside the common 0.35%% budget', (_name, actualName, expectedName) => {
     const actual = join(VISUAL_DIRECTORY, 'home/home.visual.spec.ts-snapshots', actualName)
     const expected = join(VISUAL_DIRECTORY, 'reference', expectedName)

@@ -110,9 +110,10 @@ jobs:
             test-results
 
   visual-a11y:
-    runs-on: ubuntu-24.04
-    container:
-      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    # Figma PNG и regression snapshots получены CoreText-растером macOS.
+    # Linux/Skia намеренно остаётся в отдельном e2e job: его glyph gamma и
+    # advance-метрики отличаются и не являются валидным pixel-fidelity oracle.
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -121,6 +122,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium
       - run: pnpm exec playwright test --grep @visual
         env:
           PLAYWRIGHT_RETRIES: '0'
