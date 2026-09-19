@@ -6682,12 +6682,12 @@
             "version": "2.2.14",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpstan/phpstan-src.git",
+                "url": "https://github.com/phpstan/phpstan.git",
                 "reference": "9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-src/zipball/9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac",
                 "reference": "9c672e7a8e791dfc3d30e55f683e73fc0b63a3ac",
                 "shasum": ""
             },

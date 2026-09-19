@@ -101,6 +101,11 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright test --grep-invert @visual
+        # GitHub подменяет HOME внутри container job на /github/home, но
+        # Playwright-образ запускает браузеры от root. Firefox требует HOME,
+        # принадлежащий текущему пользователю.
+        env:
+          HOME: /root
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
