@@ -12,6 +12,7 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   preview: {
+    host: '127.0.0.1',
     port: 4173,
     strictPort: true,
   },
