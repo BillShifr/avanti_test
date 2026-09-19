@@ -80,6 +80,7 @@ const icon = computed<NavigationIcon>(() => ICONS[props.itemKey])
 /* В растровом эталоне 95:4429 подложка активного пункта не отрисована. */
 .home-bottom-item__link--active {
   color: var(--home-brand);
+
   /* CoreText raster узла 95:4396 совпадает с переменным Inter на 520. */
   font-weight: 520;
 }

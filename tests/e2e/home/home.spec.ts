@@ -38,6 +38,11 @@ test.describe('Home', () => {
     const problems: string[] = []
 
     page.on('console', (message) => {
+      const isFirefoxBounceTrackingNotice =
+        message.type() === 'warning' && message.text().includes('classified as a bounce tracker')
+
+      if (isFirefoxBounceTrackingNotice) return
+
       if (message.type() === 'error' || message.type() === 'warning') {
         problems.push(`${message.type()}: ${message.text()}`)
       }

@@ -33,6 +33,7 @@ defineProps<{
   box-sizing: content-box;
   padding-bottom: env(safe-area-inset-bottom);
   background-color: var(--home-surface-card);
+
   /* Figma: 2 px сверху и 3 px по бокам/снизу. */
   box-shadow:
     inset 0 2px 0 var(--home-brand),
