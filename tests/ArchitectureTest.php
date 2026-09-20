@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Home\HomeController;
+
 arch('строгие типы во всём коде')
     ->expect('App')
     ->toUseStrictTypes();
@@ -11,6 +13,14 @@ arch('контроллеры лежат в своём слое и являютс
     ->toBeFinal()
     ->toHaveSuffix('Controller')
     ->toOnlyBeUsedIn('App\Http');
+
+it('HomeController имеет ровно одно публичное действие __invoke', function (): void {
+    $publicMethods = (new ReflectionClass(HomeController::class))
+        ->getMethods(ReflectionMethod::IS_PUBLIC);
+
+    expect($publicMethods)->toHaveCount(1)
+        ->and($publicMethods[0]->getName())->toBe('__invoke');
+});
 
 arch('DTO не зависит от HTTP-слоя и Eloquent')
     ->expect('App\Data')

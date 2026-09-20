@@ -31,7 +31,14 @@ function handleClick(): void {
     :aria-label="accessibleName"
     @click="handleClick"
   >
-    <img class="home-notifications__icon" :src="bellIcon" alt="" aria-hidden="true" />
+    <img
+      class="home-notifications__icon"
+      :src="bellIcon"
+      alt=""
+      aria-hidden="true"
+      width="21"
+      height="26"
+    />
     <span v-if="hasBadge" class="home-notifications__badge" aria-hidden="true">{{
       badgeLabel
     }}</span>
@@ -56,9 +63,13 @@ function handleClick(): void {
   inset: -3px;
 }
 
+/*
+ * Размеры — полный контур экспортированного вектора (Figma 83:2084 даёт
+ * геометрию 19 × 23.75 px, обводка добавляет по 1.187 px с каждой стороны).
+ */
 .home-notifications__icon {
-  width: 19px;
-  height: 23.75px;
+  width: 21.375px;
+  height: 26.125px;
 }
 
 .home-notifications__badge {

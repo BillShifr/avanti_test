@@ -86,15 +86,21 @@ function handleToggle(): void {
 .home-checklist__heading {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+
+  /* 14px надзаголовка + 3px + 16px заголовка = 33px блока, Figma 246:4394 */
+  gap: 3px;
 }
 
 .home-checklist__eyebrow {
   color: var(--home-brand);
   font-size: 11px;
   font-weight: var(--home-weight-bold);
-  letter-spacing: 0.05em;
-  line-height: 13px;
+
+  --home-tracking: 0.05em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
+  line-height: 14px; /* высота узла Figma 246:4395 */
 }
 
 .home-checklist__title {
@@ -114,7 +120,7 @@ function handleToggle(): void {
   height: 33px; /* 32px полосы + разделитель 1px */
   box-sizing: border-box;
   align-items: flex-start;
-  padding: 13px 16px 0;
+  padding: 12px 16px 0;
   border-top: 1px solid var(--home-border-row);
   gap: 4px;
 }

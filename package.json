@@ -4,12 +4,13 @@
   "type": "module",
   "packageManager": "pnpm@10.28.0",
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "vite",
     "build:laravel": "vite build",
     "build:preview": "vite build --config vite.preview.config.ts",
+    "build:pages": "vite build --config vite.preview.config.ts",
     "preview:serve": "vite preview --config vite.preview.config.ts",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
@@ -18,7 +19,7 @@
     "format": "prettier . --write",
     "structure": "node tools/structure_check.mjs",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test --grep-invert @visual",
+    "test:e2e": "playwright test --grep-invert @visual --project=chromium-desktop --project=chromium-mobile",
     "test:visual": "playwright test --grep @visual",
     "quality:frontend": "pnpm typecheck && pnpm lint && pnpm lint:css && pnpm format:check && pnpm structure && pnpm test:unit"
   },
@@ -29,7 +30,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
-    "@fontsource/geist-sans": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
     "@fontsource/inter": "^5.2.8",
     "@playwright/test": "^1.63.0",
     "@stylistic/eslint-plugin": "^5.10.0",
@@ -41,6 +42,7 @@
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
     "@vitejs/plugin-vue": "^6.0.9",
+    "@vitest/coverage-v8": "^5.0.1",
     "@vue/test-utils": "^2.5.1",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",

@@ -16,6 +16,7 @@ body {
   background-color: var(--home-surface-page);
   color: var(--home-text-strong);
   font-family: var(--home-font-family);
+  font-optical-sizing: auto;
   font-synthesis-weight: none;
   font-synthesis-style: none;
   text-rendering: optimizelegibility;

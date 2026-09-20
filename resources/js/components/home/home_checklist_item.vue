@@ -7,7 +7,7 @@ import userWhite from '../../../images/home/shared/user_white.svg'
 import uploadTeal from '../../../images/home/shared/upload_teal.svg'
 import penGrey from '../../../images/home/shared/pen_grey.svg'
 import checkWhiteBold from '../../../images/home/shared/check_white_bold.svg'
-import arrowWhite from '../../../images/home/shared/arrow_white.svg'
+import arrowWhiteCompact from '../../../images/home/shared/arrow_white_compact.svg'
 import arrowGrey from '../../../images/home/shared/arrow_grey.svg'
 
 const props = defineProps<{
@@ -28,7 +28,7 @@ const LEADING_ICONS: Readonly<Record<HomeVerificationIconKey, string>> = {
 
 const STATUS_ICONS: Readonly<Record<HomeProgressState, string>> = {
   complete: checkWhiteBold,
-  current: arrowWhite,
+  current: arrowWhiteCompact,
   pending: arrowGrey,
 }
 
@@ -40,7 +40,7 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
 <template>
   <li class="home-check" :class="`home-check--${state}`">
     <span class="home-check__icon">
-      <img :src="leadingIcon" alt="" aria-hidden="true" />
+      <img :src="leadingIcon" alt="" aria-hidden="true" width="24" height="24" />
     </span>
 
     <span class="home-check__text">
@@ -54,10 +54,10 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
       :href="href"
       :aria-label="`${title}: ${description}`"
     >
-      <img :src="statusIcon" alt="" aria-hidden="true" />
+      <img :src="statusIcon" alt="" aria-hidden="true" width="24" height="24" />
     </a>
     <span v-else class="home-check__status">
-      <img :src="statusIcon" alt="" aria-hidden="true" />
+      <img :src="statusIcon" alt="" aria-hidden="true" width="24" height="24" />
     </span>
   </li>
 </template>
@@ -145,6 +145,13 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
   font-weight: var(--home-weight-regular);
 }
 
+@media (width < 768px) {
+  /* CoreText raster mobile-узлов 18:1054/1055 точнее совпадает при wght=520. */
+  .home-check--complete .home-check__description {
+    font-weight: 520;
+  }
+}
+
 .home-check__status {
   display: flex;
   width: 22px;
@@ -165,6 +172,11 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
 .home-check--pending .home-check__status {
   width: 28px;
   height: 28px;
+}
+
+/* Figma 246:4443: иконка прижата к левому краю круга, 246:4454 — по центру. */
+.home-check--current .home-check__status {
+  justify-content: flex-start;
 }
 
 .home-check--current .home-check__status img,

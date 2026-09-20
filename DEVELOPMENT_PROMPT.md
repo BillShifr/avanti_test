@@ -2,7 +2,7 @@
 
 Ты — senior full-stack разработчик. Полностью реализуй два состояния одной страницы Home по уже извлечённому Figma-дизайну: desktop и mobile. Это тестовое задание, поэтому оцениваются не только внешний вид, но и архитектура, качество кода, тестирование, Git workflow и deployment.
 
-Не ограничивайся планом или scaffold. Доведи работу до проверяемой реализации, зелёного полного gate, GitHub feature-ветки и Vercel Preview. Не расширяй scope за пределы Home.
+Не ограничивайся планом или scaffold. Доведи работу до проверяемой реализации, зелёного полного gate, GitHub feature-ветки и GitHub Pages preview. Не расширяй scope за пределы Home.
 
 ## 1. Рабочая директория
 
@@ -30,10 +30,10 @@
 8. `/Users/vladislavtatyankin/test_tat/home-reference/README.md`
 9. `/Users/vladislavtatyankin/test_tat/home-reference/mobile/README.md`
 
-Загрузи и применяй локальный skill:
+Используй локальное руководство по реализации:
 
 ```text
-/Users/vladislavtatyankin/test_tat/.codex/skills/home-screens-implementation/SKILL.md
+/Users/vladislavtatyankin/test_tat/docs/home-implementation-guide/README.md
 ```
 
 `AGENTS.md` является обязательной политикой. Документация описывает уже принятые решения: не заменяй их случайной альтернативой. Если обнаружится реальное техническое противоречие, сначала докажи его кодом или официальной документацией, затем зафиксируй изменение решения в `docs/`.
@@ -82,7 +82,7 @@ PNG/SVG являются визуальным эталоном. JSON являе�
 - Home mobile;
 - responsive переход между ними;
 - необходимые для Home Laravel route/controller/DTO;
-- типизированные fixture-данные для Vercel preview;
+- типизированные fixture-данные для GitHub Pages preview;
 - тесты, линтеры, hooks, CI и deployment этих двух состояний.
 
 Не реализуй остальные Figma-экраны, полноценный auth flow, notification center, chat backend, выдачу средств или общий UI-kit всего продукта.
@@ -183,16 +183,16 @@ home_page.vue
 
 Если в ходе реализации понадобится дополнительный компонент, он должен иметь отдельную ответственность и соблюдать naming rule. Не создавай абстракцию только ради уменьшения количества строк.
 
-## 8. Laravel и Vercel должны использовать один UI
+## 8. Laravel и GitHub Pages должны использовать один UI
 
 Сделай два build target:
 
 1. `build:laravel` — Laravel Vite Plugin, `resources/js/app.ts`, output/manifest для Laravel.
-2. `build:preview` — `preview/index.html` и `preview/main.ts`, статическая сборка для Vercel.
+2. `build:pages` — `preview/index.html` и `preview/main.ts`, статическая сборка для GitHub Pages.
 
 Оба entrypoint импортируют один и тот же `home_page.vue`. Preview использует fixture, объявленный через `satisfies HomePageProps`. Не создавай копию HTML или отдельную preview-версию компонентов.
 
-Vercel используется как frontend preview тестового задания. Production Laravel остаётся готовым для PHP-совместимого hosting.
+GitHub Pages используется как frontend preview тестового задания. Production Laravel остаётся готовым для PHP-совместимого hosting.
 
 ## 9. Порядок реализации
 
@@ -207,7 +207,7 @@ Vercel используется как frontend preview тестового за�
 7. responsive hardening;
 8. unit, feature, E2E, visual и accessibility tests;
 9. linters, Lefthook и GitHub Actions;
-10. GitHub push, Vercel Preview и handoff.
+10. GitHub push, GitHub Pages preview и handoff.
 
 Сначала выравнивай внешнюю геометрию, затем внутренние отступы, typography baseline, SVG/raster assets, borders, radius и shadows. Не маскируй неправильную структуру абсолютным позиционированием всего экрана.
 
@@ -288,7 +288,7 @@ visual-a11y
 Если репозиторий ещё не создан, инициализируй его и работай в feature branch:
 
 ```text
-codex/home-pixel-perfect
+feature/home-pixel-perfect
 ```
 
 Используй conventional commits, например:
@@ -310,7 +310,7 @@ chore(tooling): add quality gates and hooks
 
 Если base снова сдвинулся, повторить merge и полный gate. Не merge-ить PR самостоятельно.
 
-Если remote, GitHub authentication или Vercel connection отсутствуют, сначала полностью закончи локальную реализацию и проверки. Только затем сообщи точный внешний blocker и одну конкретную команду/операцию, которая требуется от владельца.
+Если remote, GitHub authentication или Pages configuration отсутствуют, сначала полностью закончи локальную реализацию и проверки. Только затем сообщи точный внешний blocker и одну конкретную операцию, которая требуется от владельца.
 
 ## 14. Полный gate
 
@@ -324,7 +324,7 @@ composer quality
 pnpm test:e2e
 pnpm test:visual
 pnpm build:laravel
-pnpm build:preview
+pnpm build:pages
 ```
 
 Дополнительно проверь:
@@ -333,7 +333,7 @@ pnpm build:preview
 - production bundle не содержит reference PNG всего экрана;
 - console errors/warnings отсутствуют;
 - GitHub CI зелёный;
-- Vercel Preview открывается на обоих контрольных viewport.
+- GitHub Pages preview открывается на обоих контрольных viewport.
 
 ## 15. Definition of Done
 
@@ -343,10 +343,10 @@ pnpm build:preview
 - код соответствует lead rules и `AGENTS.md`;
 - все компоненты меньше 300 строк;
 - inline JS/CSS отсутствуют;
-- Laravel и Vercel используют один набор компонентов;
+- Laravel и GitHub Pages используют один набор компонентов;
 - полный gate зелёный после merge свежей base;
 - feature branch отправлена в GitHub;
-- Vercel Preview доступен;
+- GitHub Pages preview доступен;
 - имеются actual/expected/diff screenshots;
 - README содержит команды установки, запуска, тестирования и сборки;
 - PR подготовлен, но не merged.
@@ -359,7 +359,7 @@ pnpm build:preview
 - feature branch;
 - commit SHA;
 - GitHub branch/PR URL;
-- Vercel Preview URL;
+- GitHub Pages URL;
 - локальные ссылки на desktop/mobile screenshots и diff;
 - какие gates и тесты прошли;
 - только реальные оставшиеся риски или blockers.

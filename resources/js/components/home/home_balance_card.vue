@@ -84,20 +84,35 @@ function handleWithdraw(): void {
   color: var(--home-surface-accent-soft);
   font-size: 13px;
   font-weight: var(--home-weight-light);
-  letter-spacing: 0.01em;
+
+  --home-tracking: 0.01em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
   line-height: 16px;
 }
 
+/* Figma 57:1036 — двухстрочный узел 150 × 24 px с lineHeight 100%. */
 .home-balance__title {
+  min-height: 24px;
   max-width: 150px;
+  padding-top: var(--home-line-trim);
   color: var(--home-surface-accent-soft);
   font-size: 10px;
   font-weight: var(--home-weight-semibold);
-  letter-spacing: 0.01em;
-  line-height: 12px;
+
+  --home-tracking: 0.01em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
+  line-height: 1;
 }
 
 .home-balance__status {
+  /* Figma 1:112 — 10px + 110px текста + 10px. Ряд выровнен space-between,
+     поэтому ширина зафиксирована по узлу: иначе доли пикселя едут в бейдж. */
+  box-sizing: border-box;
+  width: 130px;
   padding: 4px 10px;
   border-radius: var(--home-radius-pill);
   background-color: rgb(255 255 255 / 20%);
@@ -119,7 +134,12 @@ function handleWithdraw(): void {
   color: var(--home-text-inverse);
   font-size: 36px;
   font-weight: var(--home-weight-bold);
-  letter-spacing: -0.034em; /* Figma 1:115/57:1040: -1.5% + компенсация трекинга */
+
+  /* Figma 1:115 / 57:1040 */
+  --home-tracking: -0.015em;
+
+  letter-spacing: var(--home-tracking);
+  text-indent: calc(var(--home-tracking) / 2);
   line-height: 44px;
 }
 
@@ -133,7 +153,7 @@ function handleWithdraw(): void {
 .home-balance__availability {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: var(--home-surface-accent-soft);
   font-size: 12px;
   font-weight: var(--home-weight-medium);
@@ -145,7 +165,7 @@ function handleWithdraw(): void {
   display: none;
   width: 100px;
   height: 1px;
-  background-color: var(--home-text-inverse);
+  background-color: rgb(255 255 255 / 31.3725%); /* Figma node 1:124 */
   flex: none;
 }
 
@@ -165,8 +185,11 @@ function handleWithdraw(): void {
     line-height: 16px;
   }
 
+  /* Десктопный узел 1:111 однострочный, компенсация не нужна. */
   .home-balance__title {
+    min-height: 0;
     max-width: none;
+    padding-top: 0;
     font-size: 16px;
     line-height: 19px;
   }

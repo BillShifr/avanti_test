@@ -74,6 +74,12 @@ withDefaults(
   gap: 6px;
 }
 
+/* Figma 57:2063 задаёт тексту фиксированную ширину 21px, шире собственных
+   «чернил» (20.48px); без неё группа целиком уезжает на 1px вправо. */
+.home-user--mobile .home-user__text {
+  width: 21px;
+}
+
 .home-user--mobile .home-user__avatar {
   width: 32px;
   height: 32px;

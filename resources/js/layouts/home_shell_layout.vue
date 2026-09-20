@@ -93,6 +93,14 @@ function handleNotifications(): void {
   padding: 0 var(--home-space-gutter-mobile);
   background-color: var(--home-surface-card);
 
+  /*
+   * Минимальный зазор между блоком «логотип + меню» и кнопкой поддержки.
+   * На контрольных 1440px свободного места кратно больше, поэтому
+   * space-between работает как в макете; правило срабатывает только там,
+   * где меню ужимается и иначе упиралось бы в кнопку.
+   */
+  gap: 24px;
+
   /* Figma рисует обводку внутрь фрейма, поэтому она не должна влиять на поток. */
   box-shadow: inset 0 0 0 1px var(--home-border-neutral);
 }

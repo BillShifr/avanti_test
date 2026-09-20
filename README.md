@@ -5,7 +5,7 @@
 
 Стек: **PHP 8.4 · Laravel 13 · Inertia 3 · Vue 3 (`<script setup lang="ts">`) ·
 TypeScript strict · Vite 8 · нативный CSS**. Один и тот же `home_page.vue`
-рендерится и Laravel-приложением, и статическим preview для Vercel.
+рендерится и Laravel-приложением, и статическим preview для GitHub Pages.
 
 ## Требования
 
@@ -22,6 +22,7 @@ TypeScript strict · Vite 8 · нативный CSS**. Один и тот же `
 pnpm install --frozen-lockfile
 composer install --no-interaction --prefer-dist
 cp .env.example .env
+touch database/database.sqlite
 php artisan key:generate
 ```
 
@@ -32,7 +33,7 @@ php artisan key:generate
 php artisan serve          # http://localhost:8000/home
 pnpm run dev
 
-# Статический preview на фикстуре (то же, что деплоится на Vercel)
+# Статический preview на фикстуре (то же, что публикуется на GitHub Pages)
 pnpm run build:preview && pnpm run preview:serve   # http://127.0.0.1:4173
 ```
 
@@ -68,8 +69,13 @@ gate, оба продакшн-билда и Chromium smoke.
 
 ```bash
 pnpm run build:laravel   # public/build + manifest для Laravel Vite Plugin
-pnpm run build:preview   # dist-preview для Vercel
+pnpm run build:preview   # локальный dist-preview
+pnpm run build:pages     # dist-preview для GitHub Pages
 ```
+
+Пошаговое включение и публикация описаны в
+[инструкции GitHub Pages](docs/GITHUB_PAGES_DEPLOYMENT.md). Pages публикует
+проверочный статический preview того же Vue-компонента; основное приложение остаётся Laravel.
 
 ## Структура
 
@@ -88,7 +94,7 @@ resources/
     pages/home/        home_page.vue
     types/home/        TypeScript-зеркало DTO
     utils/home/        форматтеры
-preview/               entrypoint и типизированная фикстура для Vercel
+preview/               entrypoint и типизированная фикстура для GitHub Pages
 tests/                 Pest, Vitest, Playwright (e2e + visual), support
 tools/                 structure_check.mjs, pixel_diff.mjs
 docs/                  план, стек, roadmap, quality gates, ADR, доступность
@@ -105,11 +111,15 @@ Inertia props → `home_page.vue` → узкие компоненты. Eloquent 
   крупного блока против `spec/home-layout.json` (допуск 0 px для карточек,
   1 px для текстовых боксов), растровое отличие от PNG-эталонов Figma и
   браузерные regression-снимки с `maxDiffPixels: 0`.
-- `actual` / `expected` / `diff` складываются в `tests/visual/output/` и
+- `actual` / `expected` / `diff` / 50%-`overlay` складываются в `tests/visual/output/` и
   прикладываются к прогону как артефакты.
-- Достигнутое растровое отличие: **desktop ≈ 1.4 %**, **mobile ≈ 3.8 %**.
-  Целевые 0.35 % не достигнуты; причина, измерения и варианты решения —
-  в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
+- Достигнутое отличие живого Chromium-снимка: **desktop 0.152 %**, **mobile 0.345 %** —
+  оба viewport проходят единый лимит 0.35 % из `docs/QUALITY_GATES.md` §5.
+  Отдельная двунаправленная edge-проверка запрещает связные структурные
+  смещения больше 2 px. Калибровка и защита от ложноположительных/ложноотрицательных
+  результатов описаны в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
+  Figma-fidelity и regression PNG закреплены на `macos-26`/CoreText; Linux/Skia
+  остаётся отдельным функциональным cross-browser gate.
 
 ## Известные ограничения
 

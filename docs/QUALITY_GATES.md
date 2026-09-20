@@ -123,11 +123,11 @@ Acceptance has two layers:
 - **Geometry:** expected x/y/width/height must match; tolerance is at most 1 CSS px for text bounds and 0 px for card/container bounds.
 - **Figma raster:** pixelmatch threshold may ignore subpixel antialiasing, but total differing pixels must stay under `0.35%`, and no connected structural diff region may exceed 2 px along an edge.
 
-Bit-identical PNG comparison between Figma export and browser output is not a valid cross-platform requirement because font and graphics rasterization vary by OS/browser. After the first approved Figma comparison, browser regression snapshots are generated and compared in the same pinned CI container with `maxDiffPixels: 0`.
+Bit-identical PNG comparison between Figma export and browser output is not a valid cross-platform requirement because font and graphics rasterization vary by OS/browser. Figma fidelity and browser regression therefore run on the pinned `macos-26` CoreText runner with Playwright Chromium 1.63 and `maxDiffPixels: 0`; Linux/Skia remains a separate functional cross-browser gate.
 
 Playwright reference screenshots remain committed. Updating them requires:
 
-- `pnpm test:visual --update-snapshots` executed in the pinned container;
+- `pnpm test:visual --update-snapshots` executed on the pinned `macos-26` runner;
 - before/after/diff attached to PR;
 - a reason tied to Figma or an approved design correction.
 
@@ -147,9 +147,9 @@ Automated axe checks do not prove full accessibility; manual checks are required
 1. `frontend-static`: frozen install, typecheck, ESLint, Stylelint, Prettier, structure script.
 2. `php-static`: Composer install, Pint check, Larastan.
 3. `unit-feature`: Vitest coverage + Pest.
-4. `builds`: Laravel production build + Vercel preview build; upload bundles on failure.
+4. `builds`: Laravel production build + GitHub Pages preview build; upload bundles on failure.
 5. `e2e`: Chromium functional, Firefox/WebKit smoke.
-6. `visual-a11y`: pinned Chromium, Figma diff, zero-diff regression, axe; upload artifacts always on failure.
+6. `visual-a11y`: `macos-26`, pinned Chromium, Figma diff, zero-diff regression; upload artifacts always.
 
 Recommended coverage policy focuses on meaningful code:
 
@@ -196,4 +196,3 @@ Push immediately after success. If base changes, merge and repeat all commands.
 - [axe-core](https://github.com/dequelabs/axe-core)
 - [WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [Pest browser testing](https://pestphp.com/docs/browser-testing)
-

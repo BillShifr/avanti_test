@@ -15,15 +15,15 @@
 | Accessibility | WCAG 2.2 A/AA, keyboard/focus/zoom, semantic status | axe + manual checklist |
 | Build engineering | Dual Vite entrypoints sharing one UI, deterministic lockfiles | Both production builds |
 | Git hygiene | Focused commits, base merge before push, reviewable PR | Clean history, current base, PR template |
-| Deployment | Git-linked Vercel preview and Laravel-ready artifact | Vercel URL + Laravel build artifact |
+| Deployment | GitHub Pages preview and Laravel-ready artifact | Pages URL + Laravel build artifact |
 
-## Codex skills used for this project
+## Проектные руководства
 
-- `skill-creator`: used to create the local, reusable execution skill at `.codex/skills/home-screens-implementation`.
-- `figma-design-to-code`: must be loaded before any future Figma `get_design_context` call used during implementation.
-- `git-feature-handoff`: should be used when implementation is complete and the branch is ready to merge base, validate, push and hand off.
+- [Руководство по реализации Home](home-implementation-guide/README.md) — архитектура, визуальная проверка и поставка.
+- [Quality gates](QUALITY_GATES.md) — обязательный набор проверок перед push.
+- [Правила проекта](../AGENTS.md) — обязательная политика структуры, тестирования и Git workflow.
 
-The first implementation turn should load the local Home skill. The final delivery turn should also load `git-feature-handoff`. Skills guide the workflow; `AGENTS.md` remains the hard project policy.
+Перед изменением Home исполнитель читает проектное руководство и релевантные ссылки из него. Перед поставкой ветка синхронизируется с базой и проходит полный gate из `QUALITY_GATES.md`.
 
 ## Senior review questions
 
@@ -33,6 +33,5 @@ The first implementation turn should load the local Home skill. The final delive
 - Can Laravel change its persistence model without changing presentation components?
 - Can a failed screenshot test explain where and how many pixels changed?
 - Can the repository be cloned, installed, tested and built without undocumented global tools?
-- Does the Vercel URL run the same Home component that Laravel renders?
+- Does the GitHub Pages URL run the same Home component that Laravel renders?
 - Are accessibility corrections explicit when the source design is incomplete?
-

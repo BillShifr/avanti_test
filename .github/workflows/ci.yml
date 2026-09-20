@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, staging, 'codex/**']
+    branches: [main, staging, 'feature/**']
   pull_request:
 
 concurrency:
@@ -77,6 +77,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build:laravel
       - run: pnpm run build:preview
+      - run: pnpm run build:pages
+        env:
+          VITE_PAGES_BASE_PATH: /avanti_test/
       - name: production bundle не содержит эталонных PNG экрана
         run: |
           ! grep -rl "home-1440x889\|home-mobile-390x1139" public/build dist-preview
@@ -101,6 +104,11 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright test --grep-invert @visual
+        # GitHub подменяет HOME внутри container job на /github/home, но
+        # Playwright-образ запускает браузеры от root. Firefox требует HOME,
+        # принадлежащий текущему пользователю.
+        env:
+          HOME: /root
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -110,9 +118,10 @@ jobs:
             test-results
 
   visual-a11y:
-    runs-on: ubuntu-24.04
-    container:
-      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    # Figma PNG и regression snapshots получены CoreText-растером macOS.
+    # Linux/Skia намеренно остаётся в отдельном e2e job: его glyph gamma и
+    # advance-метрики отличаются и не являются валидным pixel-fidelity oracle.
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -121,7 +130,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium
       - run: pnpm exec playwright test --grep @visual
+        env:
+          PLAYWRIGHT_RETRIES: '0'
       - uses: actions/upload-artifact@v4
         if: always()
         with:

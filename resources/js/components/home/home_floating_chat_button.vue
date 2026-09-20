@@ -45,7 +45,9 @@ const accessibleName = computed<string>(() =>
   width: 56.889px;
   height: 56.889px;
   box-sizing: border-box;
-  border: 1.778px solid var(--home-brand);
+
+  /* Округление Figma 1.778 px до device-pixel на mobile viewport. */
+  border: 2px solid var(--home-brand);
   border-radius: 50%;
   box-shadow: var(--home-shadow-chat);
   object-fit: cover;

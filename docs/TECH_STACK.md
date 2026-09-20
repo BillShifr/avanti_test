@@ -35,7 +35,7 @@
 | Accessibility | `@axe-core/playwright` | WCAG 2.2 A/AA automated scan плюс ручной checklist. |
 | Git hooks | Lefthook | Один cross-language YAML, parallel staged checks, без shell glue в `.git/hooks`. |
 | CI | GitHub Actions | Linux pinned image/container, dependency caches, concurrency cancellation, artifacts on failure. |
-| Hosting | Vercel Vite preview | Git-connected preview для PR; fixture mode, тот же Vue page. |
+| Hosting | GitHub Pages | Actions deployment для review; fixture mode, тот же Vue page. |
 
 ## Что намеренно не устанавливаем
 
@@ -51,15 +51,15 @@
 | Storybook | Для двух экранов стоимость setup выше пользы. Vite preview route и component tests дают нужный review loop. |
 | Sass | Native CSS покрывает nesting/tokens/layout; дополнительный compiler не нужен. |
 
-## Laravel и Vercel
+## Laravel и GitHub Pages
 
 Laravel/Inertia page обычно рендерится PHP-сервером. Поэтому delivery делится на два build target без дублирования UI:
 
 1. `build:laravel` использует `resources/js/app.ts`, Laravel Vite Plugin и manifest в `public/build`.
 2. `build:preview` использует `preview/index.html` + `preview/main.ts`, импортирует тот же `home_page.vue` и fixture.
-3. `vercel.json` собирает preview и отдаёт SPA fallback. Никакие production API credentials в preview не нужны.
+3. `.github/workflows/pages.yml` собирает preview с project base и публикует `dist-preview`. Никакие production API credentials в preview не нужны.
 
-Это позволяет передать ссылку Vercel для тестового задания и оставить код готовым к реальному Laravel runtime. Если заказчик требует production Laravel именно на одном домене Vercel, это отдельное инфраструктурное решение; оно не должно менять компоненты Home.
+Это позволяет передать ссылку GitHub Pages для тестового задания и оставить код готовым к реальному Laravel runtime. Pages не запускает PHP, поэтому production Laravel разворачивается отдельно; это не должно менять компоненты Home.
 
 ## Управление версиями
 
@@ -77,7 +77,7 @@ Laravel/Inertia page обычно рендерится PHP-сервером. П�
 - [Vue `<script setup>`](https://vuejs.org/api/sfc-script-setup)
 - [Vite 8.1](https://vite.dev/blog/announcing-vite8-1)
 - [Vite backend integration](https://vite.dev/guide/backend-integration)
-- [Vercel Vite deployments](https://vercel.com/docs/frameworks/frontend/vite)
+- [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 - [Node release schedule](https://nodejs.org/en/about/previous-releases)
 - [ESLint flat config](https://eslint.org/docs/latest/use/configure/)
 - [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/)
@@ -85,4 +85,3 @@ Laravel/Inertia page обычно рендерится PHP-сервером. П�
 - [Laravel Pint](https://laravel.com/docs/13.x/pint)
 - [Larastan](https://github.com/larastan/larastan)
 - [Pest](https://pestphp.com/docs/installation)
-

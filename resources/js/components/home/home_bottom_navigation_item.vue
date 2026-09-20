@@ -13,14 +13,20 @@ const props = defineProps<{
   isActive: boolean
 }>()
 
-const ICONS: Readonly<Record<HomeNavigationKey, string>> = {
-  home: navHome,
-  documents: navDocuments,
-  profile: navProfile,
-  support: chatBubble,
+interface NavigationIcon {
+  readonly source: string
+  readonly width: number
+  readonly height: number
 }
 
-const iconSource = computed<string>(() => ICONS[props.itemKey])
+const ICONS: Readonly<Record<HomeNavigationKey, NavigationIcon>> = {
+  home: { source: navHome, width: 14.445, height: 15.186 },
+  documents: { source: navDocuments, width: 12.962, height: 15.927 },
+  profile: { source: navProfile, width: 11.483, height: 14.445 },
+  support: { source: chatBubble, width: 15.273, height: 15.273 },
+}
+
+const icon = computed<NavigationIcon>(() => ICONS[props.itemKey])
 </script>
 
 <template>
@@ -35,7 +41,13 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
       :aria-current="isActive ? 'page' : undefined"
     >
       <span class="home-bottom-item__icon">
-        <img :src="iconSource" alt="" aria-hidden="true" />
+        <img
+          :src="icon.source"
+          alt=""
+          aria-hidden="true"
+          :width="icon.width"
+          :height="icon.height"
+        />
       </span>
       <span class="home-bottom-item__label">{{ label }}</span>
     </a>
@@ -52,7 +64,6 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   align-items: center;
   justify-content: center;
   border-radius: var(--home-radius-control);
-  background-color: var(--home-surface-muted);
   color: var(--home-text-strong);
   font-size: 14px;
   font-weight: var(--home-weight-medium);
@@ -66,10 +77,12 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   inset: -2px -6px;
 }
 
+/* В растровом эталоне 95:4429 подложка активного пункта не отрисована. */
 .home-bottom-item__link--active {
-  background-color: var(--home-surface-accent-soft);
   color: var(--home-brand);
-  font-weight: var(--home-weight-semibold);
+
+  /* CoreText raster узла 95:4396 совпадает с переменным Inter на 520. */
+  font-weight: 520;
 }
 
 .home-bottom-item__icon {
@@ -86,7 +99,9 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
 }
 
 .home-bottom-item__link--support {
+  width: 108px; /* Figma node 57:1765 — фиксированная ширина фрейма */
   height: 43px;
+  box-sizing: border-box;
   padding: 4px 16px;
   background-color: var(--home-brand);
   color: var(--home-text-inverse);
@@ -95,13 +110,20 @@ const iconSource = computed<string>(() => ICONS[props.itemKey])
   line-height: 15px;
 }
 
+/* Figma 57:1769 — текстовый узел шириной 76 px с выключкой влево. */
+.home-bottom-item__link--support .home-bottom-item__label {
+  width: 76px;
+  text-align: left;
+}
+
 .home-bottom-item__link--support .home-bottom-item__icon {
   width: 16px;
   height: 16px;
 }
 
+/* Figma 57:2047: геометрия 12 × 12 px, полный контур обводки — 13.091 px. */
 .home-bottom-item__link--support .home-bottom-item__icon img {
-  width: 12px;
-  height: 12px;
+  width: 13.091px;
+  height: 13.091px;
 }
 </style>

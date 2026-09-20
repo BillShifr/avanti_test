@@ -6,7 +6,7 @@ Roadmap устроен как последовательность gates. Нел
 
 Работы:
 
-- инициализировать Laravel 13 repository и feature branch `codex/home-pixel-perfect`;
+- инициализировать Laravel 13 repository и feature branch `feature/home-pixel-perfect`;
 - зафиксировать PHP 8.4, Node 24 LTS, pnpm 10;
 - установить Laravel Vue starter stack с Inertia 3 и TypeScript;
 - удалить неиспользуемые UI primitives из Home scope;
@@ -164,13 +164,13 @@ Gate:
 - warnings treated as errors;
 - production Laravel и preview builds проходят с clean checkout.
 
-## Этап 9. Vercel и handoff — 0.5 дня
+## Этап 9. GitHub Pages и handoff — 0.5 дня
 
 Работы:
 
 - создать preview entrypoint с тем же `home_page.vue`;
-- настроить `vercel.json`, build command/output directory;
-- подключить Git repository к Vercel;
+- настроить Pages workflow, project base и artifact из `dist-preview`;
+- включить GitHub Actions как источник Pages;
 - проверить Preview URL на desktop/mobile;
 - добавить README запуска и review instructions.
 
@@ -180,11 +180,11 @@ Gate:
 2. merge `origin/<base>`;
 3. полный gate;
 4. push без паузы;
-5. дождаться GitHub CI и Vercel deployment.
+5. дождаться GitHub CI и Pages deployment.
 
 Финальный Gate:
 
-- проверяющему доступны GitHub branch/PR и Vercel URL;
+- проверяющему доступны GitHub branch/PR и Pages URL;
 - branch не конфликтует с base;
 - CI зелёный;
 - PR содержит `Что и зачем`, `Как`, `Риски`, `Как протестировано`;
@@ -197,5 +197,4 @@ Gate:
 - production auth, notification center, chat backend;
 - полноценная общая design system;
 - SSR, если он не требуется существующим Laravel приложением;
-- самостоятельный production deploy Laravel backend на Vercel.
-
+- самостоятельный production deploy Laravel backend на GitHub Pages.

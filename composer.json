@@ -6,8 +6,7 @@
   "require": {
     "php": "^8.4",
     "inertiajs/inertia-laravel": "^3.0",
-    "laravel/framework": "^13.0",
-    "laravel/tinker": "^2.10"
+    "laravel/framework": "^13.0"
   },
   "require-dev": {
     "larastan/larastan": "^3.0",
@@ -30,6 +29,10 @@
     }
   },
   "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
     "test": "pest",
     "analyse": "phpstan analyse --memory-limit=1G",
     "format": "pint",
