@@ -72,7 +72,7 @@ workflow `CI`. Самостоятельно сливать feature-ветку р
 - Ошибка `Get Pages site failed`: включите **Settings → Pages → GitHub Actions**.
 - Ошибка environment protection: разрешите выбранной ветке deployment в environment
   `github-pages` или подтвердите ожидающее approval.
-- 404 для assets: проверьте, что `PAGES_BASE_PATH` равен `/<repository>/` с завершающим
+- 404 для assets: проверьте, что `VITE_PAGES_BASE_PATH` равен `/<repository>/` с завершающим
   `/`.
 - Пустой artifact: локально выполните `pnpm run build:pages` и проверьте
   `dist-preview/index.html`.

@@ -4,7 +4,7 @@ import chatAvatar from '../../resources/images/home/mobile/chat_avatar.png'
 import { createPreviewHref } from '../preview_href'
 
 const previewHref = (path: `/${string}`): string =>
-  createPreviewHref(import.meta.env.BASE_URL, path)
+  createPreviewHref(import.meta.env.VITE_PAGES_BASE_PATH ?? './', path)
 
 /**
  * Детерминированные данные для GitHub Pages preview.
