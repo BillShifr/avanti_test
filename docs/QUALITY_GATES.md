@@ -147,7 +147,7 @@ Automated axe checks do not prove full accessibility; manual checks are required
 1. `frontend-static`: frozen install, typecheck, ESLint, Stylelint, Prettier, structure script.
 2. `php-static`: Composer install, Pint check, Larastan.
 3. `unit-feature`: Vitest coverage + Pest.
-4. `builds`: Laravel production build + Vercel preview build; upload bundles on failure.
+4. `builds`: Laravel production build + GitHub Pages preview build; upload bundles on failure.
 5. `e2e`: Chromium functional, Firefox/WebKit smoke.
 6. `visual-a11y`: `macos-26`, pinned Chromium, Figma diff, zero-diff regression; upload artifacts always.
 

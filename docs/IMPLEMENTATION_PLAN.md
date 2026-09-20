@@ -186,8 +186,7 @@ Typography uses Inter local font files and explicit weight mappings. Synthetic b
 ## 10. Delivery topology
 
 - GitHub PR is the source of review.
-- Vercel imports the repository, runs `pnpm build:preview`, publishes `dist-preview`.
+- GitHub Actions runs `pnpm build:pages` and publishes `dist-preview` to GitHub Pages.
 - Preview mode displays a small non-production data marker outside screenshot viewport or through metadata, never inside the target UI.
 - Laravel mode runs `composer install`, `pnpm build:laravel` and feature tests.
-- CI status is required before handoff. Vercel preview is checked at both reference viewport sizes.
-
+- CI status is required before handoff. GitHub Pages preview is checked at both reference viewport sizes.

@@ -10,6 +10,7 @@
     "dev": "vite",
     "build:laravel": "vite build",
     "build:preview": "vite build --config vite.preview.config.ts",
+    "build:pages": "vite build --config vite.preview.config.ts",
     "preview:serve": "vite preview --config vite.preview.config.ts",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --max-warnings 0",

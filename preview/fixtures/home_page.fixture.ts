@@ -1,9 +1,12 @@
 import type { HomePageProps } from '../../resources/js/types/home/home_page.types'
 import profileAvatar from '../../resources/images/home/shared/profile_avatar.jpg'
 import chatAvatar from '../../resources/images/home/mobile/chat_avatar.png'
+import { createPreviewHref } from '../preview_href'
+
+const previewHref = (path: `/${string}`) => createPreviewHref(import.meta.env.BASE_URL, path)
 
 /**
- * Детерминированные данные для Vercel preview.
+ * Детерминированные данные для GitHub Pages preview.
  * `satisfies` ломает typecheck, если PHP DTO и TS-контракт разойдутся.
  */
 export const homePageFixture = {
@@ -15,12 +18,17 @@ export const homePageFixture = {
   },
   notificationsCount: 4,
   navigation: [
-    { key: 'home', label: 'Home', href: '/home', isActive: true },
-    { key: 'documents', label: 'Documenti', href: '/documenti', isActive: false },
-    { key: 'profile', label: 'Profilo', href: '/profilo', isActive: false },
-    { key: 'support', label: 'Assistenza', href: '/assistenza', isActive: false },
+    { key: 'home', label: 'Home', href: previewHref('/home'), isActive: true },
+    {
+      key: 'documents',
+      label: 'Documenti',
+      href: previewHref('/documenti'),
+      isActive: false,
+    },
+    { key: 'profile', label: 'Profilo', href: previewHref('/profilo'), isActive: false },
+    { key: 'support', label: 'Assistenza', href: previewHref('/assistenza'), isActive: false },
   ],
-  breadcrumbs: [{ label: 'Piattaforma', href: '/' }, { label: 'Home' }],
+  breadcrumbs: [{ label: 'Piattaforma', href: previewHref('/') }, { label: 'Home' }],
   onboarding: {
     currentStep: 4,
     totalSteps: 5,
@@ -40,7 +48,7 @@ export const homePageFixture = {
     interestRateLabel: 'TAN 3,8%',
     availabilityMessage: "Fondi disponibili dopo l'approvazione dei documenti",
     statusLabel: 'Completa i passaggi',
-    withdrawUrl: '/prelievo',
+    withdrawUrl: previewHref('/prelievo'),
     isWithdrawEnabled: false,
   },
   personalData: [
@@ -79,7 +87,7 @@ export const homePageFixture = {
       state: 'current',
       stateLabel: 'Step attuale',
       iconKey: 'documents',
-      href: '/documenti',
+      href: previewHref('/documenti'),
     },
     {
       key: 'signature',
@@ -88,7 +96,7 @@ export const homePageFixture = {
       state: 'pending',
       stateLabel: 'In attesa',
       iconKey: 'signature',
-      href: '/firma',
+      href: previewHref('/firma'),
     },
   ],
   verificationHeading: {
@@ -100,14 +108,14 @@ export const homePageFixture = {
     subtitle: 'Step ancora da completare',
     badgeLabel: '3 / 5 Completati',
     compactBadgeLabel: '3 / 5',
-    href: '/documenti',
+    href: previewHref('/documenti'),
     pendingSteps: [
       { key: 'documents', label: 'Documenti' },
       { key: 'signature', label: 'Firma' },
     ],
   },
   support: {
-    href: '/assistenza',
+    href: previewHref('/assistenza'),
     unreadCount: 2,
     label: 'Assistenza',
     avatarUrl: chatAvatar,

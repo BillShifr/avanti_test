@@ -43,7 +43,7 @@
 - Денежные значения передавать minor units + ISO currency, форматировать через чистый formatter. Не передавать заранее склеенную HTML-строку.
 - URL передавать из Laravel named routes. Не хардкодить production paths в компонентах.
 - Не устанавливать Pinia, Vue Router, Axios, UI-kit или icon pack для этой страницы: у них нет владельца состояния/задачи в текущем scope.
-- Vercel preview использует тот же page component и типизированный fixture; отдельная копия UI запрещена.
+- GitHub Pages preview использует тот же page component и типизированный fixture; отдельная копия UI запрещена.
 
 ## Доступность
 
@@ -65,13 +65,13 @@
 
 - Работать в ветке `feature/home-pixel-perfect` или в согласованной feature-ветке.
 - Conventional commits: `feat(home): ...`, `test(home): ...`, `chore(tooling): ...`.
-- Не коммитить `.env`, токены, cookies, Vercel credentials, Playwright traces с персональными данными или исходный `.fig`, если лицензия/размер репозитория этого не допускают.
+- Не коммитить `.env`, токены, cookies, deploy credentials, Playwright traces с персональными данными или исходный `.fig`, если лицензия/размер репозитория этого не допускают.
 - Перед каждым push определить базу (`staging`, если она есть; иначе `main`) и выполнить строго по порядку:
   1. `git fetch origin <base>`;
   2. `git merge origin/<base>`;
   3. разрешить конфликты;
-  4. полный gate: typecheck, JS tests, PHP tests, Prettier check, ESLint, Stylelint, Pint check, Larastan, Playwright, visual tests, production Laravel build и Vercel preview build;
+  4. полный gate: typecheck, JS tests, PHP tests, Prettier check, ESLint, Stylelint, Pint check, Larastan, Playwright, visual tests, production Laravel build и GitHub Pages preview build;
   5. сразу `git push`.
 - Если база сдвинулась после gate, повторить fetch, merge и весь gate.
 - Не merge-ить PR самостоятельно.
-- Финальный handoff содержит branch, commit SHA, GitHub URL, Vercel Preview URL и Markdown-разделы `Что и зачем`, `Как`, `Риски`, `Как протестировано`.
+- Финальный handoff содержит branch, commit SHA, GitHub branch URL, GitHub Pages URL и Markdown-разделы `Что и зачем`, `Как`, `Риски`, `Как протестировано`.

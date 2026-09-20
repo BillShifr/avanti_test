@@ -20,7 +20,7 @@
 - Только `<script setup lang="ts">`.
 - Один компонент в файле, имена `<domain>_<purpose>.vue`, максимум 300 строк.
 - Типизированные serializable props передаются из immutable Laravel DTO.
-- Один `home_page.vue` используется Laravel и Vercel fixture preview.
+- Один `home_page.vue` используется Laravel и GitHub Pages fixture preview.
 - Нельзя добавлять вторую реализацию UI, клиентский роутер или лишний state manager.
 
 ## Обязательная проверка

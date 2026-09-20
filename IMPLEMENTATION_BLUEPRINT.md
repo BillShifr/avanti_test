@@ -33,7 +33,7 @@ PNG и SVG — визуальная истина. JSON — источник ра
 
 Основное приложение: **Laravel 13 + PHP 8.4 + Inertia 3 + Vue 3 + TypeScript + Vite 8**. Laravel владеет маршрутом, авторизацией и данными; Vue владеет представлением. Компоненты получают готовые типизированные props и не знают об Eloquent.
 
-Тот же `home_page.vue` используется статическим preview entrypoint. Он получает данные из fixture и собирается Vite для Vercel. Это даёт обязательную ссылку Vercel без второй реализации интерфейса. Production Laravel разворачивается в PHP-совместимой среде; Vercel используется как проверяемый frontend preview.
+Тот же `home_page.vue` используется статическим preview entrypoint. Он получает данные из fixture и собирается Vite для GitHub Pages. Это даёт проверяемую ссылку без второй реализации интерфейса. Production Laravel разворачивается в PHP-совместимой среде; GitHub Pages используется только как frontend preview.
 
 ## Definition of Done
 
@@ -46,4 +46,4 @@ PNG и SVG — визуальная истина. JSON — источник ра
 - отсутствуют `style="..."`, `:style`, inline arrow-functions в template и hand-written SVG, если экспорт уже есть;
 - проходят TypeScript, ESLint, Stylelint, Prettier, unit/component, Laravel feature, accessibility, E2E, visual и production build;
 - ветка синхронизирована с базой перед push, затем повторно пройден полный gate;
-- GitHub-ветка и Vercel Preview доступны проверяющему.
+- GitHub-ветка и GitHub Pages preview доступны проверяющему.

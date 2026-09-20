@@ -15,7 +15,7 @@
 | Accessibility | WCAG 2.2 A/AA, keyboard/focus/zoom, semantic status | axe + manual checklist |
 | Build engineering | Dual Vite entrypoints sharing one UI, deterministic lockfiles | Both production builds |
 | Git hygiene | Focused commits, base merge before push, reviewable PR | Clean history, current base, PR template |
-| Deployment | Git-linked Vercel preview and Laravel-ready artifact | Vercel URL + Laravel build artifact |
+| Deployment | GitHub Pages preview and Laravel-ready artifact | Pages URL + Laravel build artifact |
 
 ## Проектные руководства
 
@@ -33,5 +33,5 @@
 - Can Laravel change its persistence model without changing presentation components?
 - Can a failed screenshot test explain where and how many pixels changed?
 - Can the repository be cloned, installed, tested and built without undocumented global tools?
-- Does the Vercel URL run the same Home component that Laravel renders?
+- Does the GitHub Pages URL run the same Home component that Laravel renders?
 - Are accessibility corrections explicit when the source design is incomplete?

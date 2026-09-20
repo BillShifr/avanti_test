@@ -12,7 +12,6 @@
 /test-results
 /playwright-report
 /tests/visual/output
-/.vercel
 .env
 .env.*
 !.env.example
