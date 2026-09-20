@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, staging, 'codex/**']
+    branches: [main, staging, 'feature/**']
   pull_request:
 
 concurrency:

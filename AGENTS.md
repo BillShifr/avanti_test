@@ -63,7 +63,7 @@
 
 ## Git и поставка
 
-- Работать в ветке `codex/home-pixel-perfect` или в согласованной feature-ветке.
+- Работать в ветке `feature/home-pixel-perfect` или в согласованной feature-ветке.
 - Conventional commits: `feat(home): ...`, `test(home): ...`, `chore(tooling): ...`.
 - Не коммитить `.env`, токены, cookies, Vercel credentials, Playwright traces с персональными данными или исходный `.fig`, если лицензия/размер репозитория этого не допускают.
 - Перед каждым push определить базу (`staging`, если она есть; иначе `main`) и выполнить строго по порядку:
@@ -75,4 +75,3 @@
 - Если база сдвинулась после gate, повторить fetch, merge и весь gate.
 - Не merge-ить PR самостоятельно.
 - Финальный handoff содержит branch, commit SHA, GitHub URL, Vercel Preview URL и Markdown-разделы `Что и зачем`, `Как`, `Риски`, `Как протестировано`.
-

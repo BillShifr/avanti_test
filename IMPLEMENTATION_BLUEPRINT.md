@@ -14,8 +14,8 @@
 3. [Roadmap с критериями готовности](docs/ROADMAP.md)
 4. [Тестирование и quality gates](docs/QUALITY_GATES.md)
 5. [Матрица инженерных навыков](docs/SKILLS.md)
-6. [Правила для разработчика и Codex](AGENTS.md)
-7. [Проектный Codex skill](.codex/skills/home-screens-implementation/SKILL.md)
+6. [Правила для разработчика](AGENTS.md)
+7. [Руководство по реализации Home](docs/home-implementation-guide/README.md)
 8. [Готовый master prompt для разработки](DEVELOPMENT_PROMPT.md)
 
 ## Источники дизайна

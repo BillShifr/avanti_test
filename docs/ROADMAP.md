@@ -6,7 +6,7 @@ Roadmap устроен как последовательность gates. Нел
 
 Работы:
 
-- инициализировать Laravel 13 repository и feature branch `codex/home-pixel-perfect`;
+- инициализировать Laravel 13 repository и feature branch `feature/home-pixel-perfect`;
 - зафиксировать PHP 8.4, Node 24 LTS, pnpm 10;
 - установить Laravel Vue starter stack с Inertia 3 и TypeScript;
 - удалить неиспользуемые UI primitives из Home scope;
@@ -198,4 +198,3 @@ Gate:
 - полноценная общая design system;
 - SSR, если он не требуется существующим Laravel приложением;
 - самостоятельный production deploy Laravel backend на Vercel.
-

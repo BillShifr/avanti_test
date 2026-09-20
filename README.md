@@ -72,6 +72,10 @@ pnpm run build:laravel   # public/build + manifest для Laravel Vite Plugin
 pnpm run build:preview   # dist-preview для Vercel
 ```
 
+Пошаговое подключение репозитория и создание Preview Deployment описаны в
+[инструкции Vercel](docs/VERCEL_DEPLOYMENT.md). Vercel публикует проверочный
+статический preview того же Vue-компонента; основное приложение остаётся Laravel.
+
 ## Структура
 
 ```text

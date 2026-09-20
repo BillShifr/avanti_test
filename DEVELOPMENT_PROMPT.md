@@ -30,10 +30,10 @@
 8. `/Users/vladislavtatyankin/test_tat/home-reference/README.md`
 9. `/Users/vladislavtatyankin/test_tat/home-reference/mobile/README.md`
 
-Загрузи и применяй локальный skill:
+Используй локальное руководство по реализации:
 
 ```text
-/Users/vladislavtatyankin/test_tat/.codex/skills/home-screens-implementation/SKILL.md
+/Users/vladislavtatyankin/test_tat/docs/home-implementation-guide/README.md
 ```
 
 `AGENTS.md` является обязательной политикой. Документация описывает уже принятые решения: не заменяй их случайной альтернативой. Если обнаружится реальное техническое противоречие, сначала докажи его кодом или официальной документацией, затем зафиксируй изменение решения в `docs/`.
@@ -288,7 +288,7 @@ visual-a11y
 Если репозиторий ещё не создан, инициализируй его и работай в feature branch:
 
 ```text
-codex/home-pixel-perfect
+feature/home-pixel-perfect
 ```
 
 Используй conventional commits, например:
