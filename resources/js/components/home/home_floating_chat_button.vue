@@ -34,7 +34,7 @@ const accessibleName = computed<string>(() =>
 .home-chat {
   position: fixed;
   z-index: var(--home-z-floating-chat);
-  right: 19.111px; /* Figma node 270:8193 */
+  right: 19.111px;
   bottom: calc(95.9px + env(safe-area-inset-bottom));
   display: block;
   width: 56.889px;
@@ -45,8 +45,6 @@ const accessibleName = computed<string>(() =>
   width: 56.889px;
   height: 56.889px;
   box-sizing: border-box;
-
-  /* Округление Figma 1.778 px до device-pixel на mobile viewport. */
   border: 2px solid var(--home-brand);
   border-radius: 50%;
   box-shadow: var(--home-shadow-chat);

@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Vite;
 use Inertia\Inertia;
 use Inertia\Response;
 
-/**
- * Единственное действие маршрута `home`.
- *
- * Контроллер только собирает URL-ы именованных маршрутов и отдаёт DTO в Inertia;
- * доменных вычислений и Eloquent-сериализации здесь нет.
- */
 final class HomeController
 {
     public function __invoke(): Response

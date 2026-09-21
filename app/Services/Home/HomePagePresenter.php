@@ -7,11 +7,7 @@ namespace App\Services\Home;
 use App\Data\Home\HomePageData;
 
 /**
- * Собирает контракт страницы Home.
- *
- * В рамках тестового задания источником служат фиксированные данные онбординга,
- * но контракт и URL-ы уже строятся так, как их будет отдавать реальный репозиторий:
- * деньги — в минорных единицах, ссылки — из именованных маршрутов.
+ * собирает данные страницы с суммами в минорных единицах и ссылками из именованных маршрутов
  */
 final readonly class HomePagePresenter
 {
@@ -22,7 +18,7 @@ final readonly class HomePagePresenter
     private const PENDING = 'pending';
 
     /**
-     * @param  array<string, string>  $routes  карта key => URL именованного маршрута
+     * @param  array<string, string>  $routes
      */
     public function __construct(
         private array $routes,

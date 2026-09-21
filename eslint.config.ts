@@ -53,7 +53,6 @@ export default defineConfig(
       'vue/component-api-style': ['error', ['script-setup']],
       'vue/multi-word-component-names': 'off',
       'vue/no-v-html': 'error',
-      // Требование лида: никакого inline JS и inline CSS в шаблоне.
       'vue/no-static-inline-styles': ['error', { allowBinding: false }],
       'vue/no-restricted-static-attribute': [
         'error',
@@ -70,7 +69,7 @@ export default defineConfig(
     },
   },
   {
-    // Скрипты инструментов — обычный Node без tsconfig, типизированные правила к ним неприменимы.
+    // для служебных скриптов отключается проверка типов
     files: ['tools/**/*.mjs'],
     extends: [tseslint.configs.disableTypeChecked],
     rules: {
@@ -83,7 +82,7 @@ export default defineConfig(
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      // Testing Library отдаёт `emitted` как метод объекта — правило здесь ложноположительно.
+      // метод событий вызывает ложное срабатывание правила
       '@typescript-eslint/unbound-method': 'off',
     },
   },

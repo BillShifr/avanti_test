@@ -63,15 +63,10 @@ function handleWithdraw(): void {
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  border-radius: 9px; /* Figma node 57:1042 */
+  border-radius: 9px;
   background-color: var(--home-surface-page);
 }
 
-/*
- * Недоступная CTA: Figma 1:117 гасит сам фрейм до 0.5, а в растровых эталонах
- * содержимое приглушено ещё раз — иконка, подпись и стрелка идут поверх
- * подложки с той же прозрачностью 0.5.
- */
 .home-withdraw--disabled {
   cursor: default;
   opacity: 0.5;
@@ -88,7 +83,7 @@ function handleWithdraw(): void {
 }
 
 .home-withdraw__label {
-  margin-left: 12px; /* Figma node 57:1043 — зазор иконка → текст */
+  margin-left: 12px;
   background-image: var(--home-brand-gradient);
   background-clip: text;
   color: transparent;
@@ -114,7 +109,7 @@ function handleWithdraw(): void {
   .home-withdraw {
     height: 64px;
     padding: 18px 24px;
-    border-radius: 14px; /* Figma node 1:117 */
+    border-radius: 14px;
   }
 
   .home-withdraw__icon {

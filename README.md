@@ -29,21 +29,21 @@ php artisan key:generate
 ## Запуск
 
 ```bash
-# Laravel + Vite dev server
-php artisan serve          # http://localhost:8000/home
+# ларавел и сервер разработки
+php artisan serve
 pnpm run dev
 
-# Статический preview на фикстуре (то же, что публикуется на GitHub Pages)
-pnpm run build:preview && pnpm run preview:serve   # http://127.0.0.1:4173
+# статический предварительный просмотр
+pnpm run build:preview && pnpm run preview:serve
 ```
 
 ## Тесты
 
 ```bash
-pnpm run test:unit      # Vitest + Vue Testing Library
-pnpm run test:e2e       # Playwright: поведение, матрица ширин, axe
-pnpm run test:visual    # Playwright: геометрия, diff с Figma, regression-снимки
-composer test           # Pest: feature, unit, architecture
+pnpm run test:unit      # модульные тесты
+pnpm run test:e2e       # браузерные тесты поведения
+pnpm run test:visual    # визуальные тесты
+composer test           # серверные тесты
 ```
 
 Обновление regression-снимков — только в закреплённом контейнере и с
@@ -56,9 +56,9 @@ pnpm exec playwright test --grep @visual --update-snapshots
 ## Качество
 
 ```bash
-pnpm run quality:frontend   # typecheck + eslint + stylelint + prettier + structure + vitest
-composer quality            # pint --test + phpstan + pest
-pnpm run structure          # правила лида: имена файлов, 300 строк, запрет inline JS/CSS
+pnpm run quality:frontend   # проверка клиентской части
+composer quality            # проверка серверной части
+pnpm run structure          # проверка структуры
 ```
 
 Хуки ставятся через `pnpm exec lefthook install`:
@@ -68,9 +68,9 @@ gate, оба продакшн-билда и Chromium smoke.
 ## Сборка
 
 ```bash
-pnpm run build:laravel   # public/build + manifest для Laravel Vite Plugin
-pnpm run build:preview   # локальный dist-preview
-pnpm run build:pages     # dist-preview для GitHub Pages
+pnpm run build:laravel   # сборка для ларавел
+pnpm run build:preview   # локальная предварительная сборка
+pnpm run build:pages     # сборка для публикации
 ```
 
 Пошаговое включение и публикация описаны в
@@ -104,4 +104,3 @@ docs/                  план, стек, roadmap, quality gates, ADR, дост
 Inertia props → `home_page.vue` → узкие компоненты. Eloquent во фронтенд
 не попадает, деньги передаются в минорных единицах и форматируются
 чистой функцией `home_currency_formatter.ts`.
-

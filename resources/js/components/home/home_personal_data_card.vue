@@ -20,7 +20,7 @@ defineProps<{
 <style scoped>
 .home-personal {
   display: flex;
-  height: 131px; /* Figma node 1:148 */
+  height: 131px;
   box-sizing: border-box;
   flex-direction: column;
   padding: 24px;

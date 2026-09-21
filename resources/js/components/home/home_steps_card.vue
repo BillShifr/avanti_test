@@ -10,7 +10,6 @@ const props = defineProps<{
   stateLabels: Readonly<Record<HomeProgressState, string>>
 }>()
 
-/** Отрезок после шага окрашен в бренд, только когда сам шаг завершён (Figma 1:73 / 1:96). */
 const connectorClasses = computed<readonly string[]>(() =>
   props.onboarding.steps
     .slice(0, -1)
@@ -89,7 +88,7 @@ const connectorClasses = computed<readonly string[]>(() =>
   display: flex;
   min-width: 0;
   flex: 1;
-  margin-top: 17px; /* Figma 57:1907 — линия проходит ниже центра круга */
+  margin-top: 17px;
 }
 
 .home-steps__line {
@@ -126,7 +125,6 @@ const connectorClasses = computed<readonly string[]>(() =>
     margin-top: 16px;
   }
 
-  /* На десктопе линия заходит под круги: Figma 1:73 тянется от края круга до края. */
   .home-steps__line {
     width: calc(100% + 72px);
     margin-left: -36px;

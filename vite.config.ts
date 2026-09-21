@@ -7,7 +7,7 @@ export default defineConfig({
     laravel({
       input: [
         'resources/js/app.ts',
-        // Растровые ассеты попадают в manifest, чтобы контроллер отдавал их через Vite::asset().
+        // растровые файлы добавляются в карту сборки для загрузки через сервер
         'resources/images/home/shared/profile_avatar.jpg',
         'resources/images/home/mobile/chat_avatar.png',
       ],

@@ -53,7 +53,7 @@ function handleClick(): void {
   height: 38px;
   align-items: center;
   justify-content: center;
-  border-radius: 6.333px; /* Figma node 83:2086 */
+  border-radius: 6.333px;
   flex: none;
 }
 
@@ -63,10 +63,6 @@ function handleClick(): void {
   inset: -3px;
 }
 
-/*
- * Размеры — полный контур экспортированного вектора (Figma 83:2084 даёт
- * геометрию 19 × 23.75 px, обводка добавляет по 1.187 px с каждой стороны).
- */
 .home-notifications__icon {
   width: 21.375px;
   height: 26.125px;

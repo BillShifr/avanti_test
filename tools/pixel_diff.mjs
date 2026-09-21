@@ -4,8 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
 
 /**
- * Сравнение скриншота с растровым эталоном Figma.
- * Возвращает долю различающихся пикселей после порога антиалиасинга.
+ * сравнивает снимок с растровым эталоном
  */
 export const FIGMA_ANTIALIAS_THRESHOLD = 0.25
 
@@ -196,8 +195,7 @@ function findConnectedViolations(mask, width, height, minimumPixels, minimumSpan
 }
 
 /**
- * Ищет не шум сглаживания, а связные границы, уехавшие относительно эталона.
- * Проверка двунаправленная: ловит как добавленные, так и исчезнувшие края.
+ * находит связанные границы со смещением относительно эталона
  */
 export function compareStructuralEdges(
   actualPath,

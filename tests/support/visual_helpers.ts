@@ -13,8 +13,7 @@ export interface ReferenceBox {
 }
 
 /**
- * Сохраняет 50%-е наложение browser screenshot на Figma reference.
- * Такое изображение делает двойные контуры и сдвиги заметными при ревью.
+ * создает наложение двух снимков
  */
 export function createHalfOpacityOverlay(
   actualPath: string,
@@ -40,8 +39,7 @@ export function createHalfOpacityOverlay(
 }
 
 /**
- * Приводит страницу к детерминированному состоянию перед снимком:
- * ждёт шрифты и изображения, гасит анимации, переходы и каретку.
+ * подготавливает страницу к снимку
  */
 export async function prepareForScreenshot(page: Page): Promise<void> {
   await page.addStyleTag({
@@ -72,8 +70,7 @@ export async function prepareForScreenshot(page: Page): Promise<void> {
 }
 
 /**
- * Опорные прямоугольники из Figma:
- * desktop — узел 1:15 (1440×889), mobile — узел 18:967 (390×1139).
+ * хранит опорные прямоугольники макета
  */
 export const REFERENCE_BOXES: Readonly<Record<string, readonly ReferenceBox[]>> = {
   desktop: [
