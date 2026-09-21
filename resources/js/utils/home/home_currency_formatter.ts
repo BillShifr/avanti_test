@@ -1,6 +1,5 @@
 /**
- * Форматирование денежных значений Home.
- * Backend передаёт minor units + ISO-код, склейка строки живёт здесь.
+ * форматирует сумму из младших единиц
  */
 
 const NON_BREAKING_SPACE = ' '
@@ -13,10 +12,6 @@ export function currencySymbol(currency: string): string {
   return CURRENCY_SYMBOLS[currency] ?? currency
 }
 
-/**
- * Figma 1:115 показывает «€ 12 000»: символ, пробел, группы по три разряда.
- * Дробная часть отбрасывается только когда она нулевая — иначе показываем два знака.
- */
 export function formatMajorAmount(amountMinor: number, currency: string): string {
   if (!Number.isFinite(amountMinor)) {
     return `${currencySymbol(currency)}${NON_BREAKING_SPACE}0`
@@ -51,7 +46,7 @@ function groupThousands(value: number): string {
 }
 
 /**
- * Бейдж уведомлений: Figma 1:47 рассчитан на один-два символа.
+ * ограничивает счетчик двумя разрядами
  */
 export function formatBadgeCount(count: number): string {
   if (!Number.isFinite(count) || count <= 0) {

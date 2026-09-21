@@ -92,7 +92,6 @@ function handleWithdraw(): void {
   line-height: 16px;
 }
 
-/* Figma 57:1036 — двухстрочный узел 150 × 24 px с lineHeight 100%. */
 .home-balance__title {
   min-height: 24px;
   max-width: 150px;
@@ -109,8 +108,6 @@ function handleWithdraw(): void {
 }
 
 .home-balance__status {
-  /* Figma 1:112 — 10px + 110px текста + 10px. Ряд выровнен space-between,
-     поэтому ширина зафиксирована по узлу: иначе доли пикселя едут в бейдж. */
   box-sizing: border-box;
   width: 130px;
   padding: 4px 10px;
@@ -135,7 +132,6 @@ function handleWithdraw(): void {
   font-size: 36px;
   font-weight: var(--home-weight-bold);
 
-  /* Figma 1:115 / 57:1040 */
   --home-tracking: -0.015em;
 
   letter-spacing: var(--home-tracking);
@@ -165,7 +161,7 @@ function handleWithdraw(): void {
   display: none;
   width: 100px;
   height: 1px;
-  background-color: rgb(255 255 255 / 31.3725%); /* Figma node 1:124 */
+  background-color: rgb(255 255 255 / 31.3725%);
   flex: none;
 }
 
@@ -185,7 +181,6 @@ function handleWithdraw(): void {
     line-height: 16px;
   }
 
-  /* Десктопный узел 1:111 однострочный, компенсация не нужна. */
   .home-balance__title {
     min-height: 0;
     max-width: none;
@@ -205,7 +200,7 @@ function handleWithdraw(): void {
   }
 
   .home-balance__availability {
-    height: 23px; /* Figma node 1:123 */
+    height: 23px;
     align-items: flex-end;
     justify-content: flex-start;
     font-weight: var(--home-weight-regular);

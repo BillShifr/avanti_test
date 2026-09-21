@@ -93,15 +93,8 @@ function handleNotifications(): void {
   padding: 0 var(--home-space-gutter-mobile);
   background-color: var(--home-surface-card);
 
-  /*
-   * Минимальный зазор между блоком «логотип + меню» и кнопкой поддержки.
-   * На контрольных 1440px свободного места кратно больше, поэтому
-   * space-between работает как в макете; правило срабатывает только там,
-   * где меню ужимается и иначе упиралось бы в кнопку.
-   */
   gap: 24px;
 
-  /* Figma рисует обводку внутрь фрейма, поэтому она не должна влиять на поток. */
   box-shadow: inset 0 0 0 1px var(--home-border-neutral);
 }
 
@@ -196,11 +189,6 @@ function handleNotifications(): void {
   }
 }
 
-/*
- * Две колонки включаются только там, где карточка шагов (минимум 540px)
- * помещается в главную колонку. Пропорция 792:464 и зазор 40px из Figma 1:59
- * воспроизводятся точно на контрольном viewport 1440px.
- */
 @media (width >= 1200px) {
   .home-shell__main {
     grid-template-columns: minmax(0, 792fr) minmax(0, 464fr);

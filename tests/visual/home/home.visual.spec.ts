@@ -11,7 +11,7 @@ import {
 const OUTPUT_DIR = fileURLToPath(new URL('../output/', import.meta.url))
 const REFERENCE_DIR = fileURLToPath(new URL('../reference/', import.meta.url))
 
-/** Обязательный порог из docs/QUALITY_GATES.md §5 для обоих viewport. */
+/** порог визуального сравнения */
 const FIGMA_TARGET_RATIO = 0.0035
 
 const CASES = {

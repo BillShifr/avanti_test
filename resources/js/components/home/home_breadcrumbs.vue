@@ -20,13 +20,6 @@ defineProps<{
 </template>
 
 <style scoped>
-/*
- * Figma 1:55 — узел шириной 140px, прижатый к правому краю шапки.
- * Ширина зафиксирована, чтобы строка отсчитывалась от левого края узла:
- * Figma округляет ширину авторазмерного текстового узла вверх до целого
- * пикселя, поэтому при выключке вправо погрешности трёх узлов
- * складывались и сдвигали «Piattaforma» на 2px.
- */
 .home-breadcrumbs {
   width: 140px;
 }
@@ -43,7 +36,6 @@ defineProps<{
   align-items: center;
 }
 
-/* Figma 1:57 — узел «/» шириной 6px с отступами 8px, итого 22px. */
 .home-breadcrumbs__separator {
   box-sizing: border-box;
   width: 22px;

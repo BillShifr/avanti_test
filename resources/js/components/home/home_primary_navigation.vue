@@ -32,16 +32,12 @@ const pageItems = computed<readonly HomeNavigationItem[]>(() =>
 <style scoped>
 .home-primary-nav__list {
   display: flex;
-  width: 660px; /* Figma node 1:25 */
+  width: 660px;
   max-width: 100%;
   align-items: center;
   gap: 12px;
 }
 
-/*
- * Ширины из Figma (1:26 и 1:31) действуют как базис flex: на контрольном
- * viewport 1440px они совпадают точно, на более узких экранах пункты ужимаются.
- */
 .home-primary-nav__item {
   min-width: 0;
   flex: 0 1 212.667px;

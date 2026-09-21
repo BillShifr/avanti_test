@@ -7,8 +7,7 @@ const previewHref = (path: `/${string}`): string =>
   createPreviewHref(import.meta.env.VITE_PAGES_BASE_PATH ?? './', path)
 
 /**
- * Детерминированные данные для GitHub Pages preview.
- * `satisfies` ломает typecheck, если PHP DTO и TS-контракт разойдутся.
+ * фиксированные данные предварительного просмотра проверяются по типу страницы
  */
 export const homePageFixture = {
   user: {

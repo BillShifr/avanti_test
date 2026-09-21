@@ -1,6 +1,5 @@
 /**
- * Контракт props страницы Home.
- * Зеркало PHP DTO `App\Data\Home\HomePageData`: имена полей совпадают один в один.
+ * описывает данные страницы
  */
 
 export type HomeProgressState = 'complete' | 'current' | 'pending'

@@ -66,7 +66,6 @@ const icon = computed<NavigationIcon>(
   border-radius: var(--home-radius-control);
   background-color: var(--home-surface-page);
 
-  /* Обводка Figma рисуется внутрь фрейма и не меняет высоту 38px. */
   box-shadow: inset 0 0 0 1px var(--home-border-soft);
   color: var(--home-text-strong);
   font-size: 14px;

@@ -155,12 +155,7 @@ test.describe('Home', () => {
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze()
 
-    /*
-     * color-contrast вынесен из блокирующего набора: все конфликты приходят
-     * из палитры Figma (#2491AA, #A1A1AA, #71717A) и перечислены в
-     * docs/ACCESSIBILITY.md. Менять цвета — значит ломать растровую приёмку,
-     * поэтому по docs/QUALITY_GATES.md §6 конфликты логируются, а не «чинятся».
-     */
+    /* проверка контраста вынесена в отчет из за фиксированной палитры */
     const blocking = results.violations.filter(
       (violation) =>
         violation.id !== 'color-contrast' &&

@@ -74,7 +74,7 @@ function handleToggle(): void {
 
 .home-checklist__header {
   display: flex;
-  height: 66px; /* 65px контента + разделитель 1px, Figma 246:4393 + 246:4401 */
+  height: 66px;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
@@ -87,7 +87,6 @@ function handleToggle(): void {
   display: flex;
   flex-direction: column;
 
-  /* 14px надзаголовка + 3px + 16px заголовка = 33px блока, Figma 246:4394 */
   gap: 3px;
 }
 
@@ -100,7 +99,7 @@ function handleToggle(): void {
 
   letter-spacing: var(--home-tracking);
   text-indent: calc(var(--home-tracking) / 2);
-  line-height: 14px; /* высота узла Figma 246:4395 */
+  line-height: 14px;
 }
 
 .home-checklist__title {
@@ -111,13 +110,13 @@ function handleToggle(): void {
 }
 
 .home-checklist__items > :not(:first-child) {
-  height: 69px; /* 68px строки + разделитель 1px */
+  height: 69px;
   border-top: 1px solid var(--home-border-row);
 }
 
 .home-checklist__progress {
   display: flex;
-  height: 33px; /* 32px полосы + разделитель 1px */
+  height: 33px;
   box-sizing: border-box;
   align-items: flex-start;
   padding: 12px 16px 0;
@@ -142,7 +141,7 @@ function handleToggle(): void {
 
 @media (width >= 768px) {
   .home-checklist__items > :not(:first-child) {
-    height: 77px; /* 76px строки + разделитель 1px */
+    height: 77px;
   }
 }
 </style>

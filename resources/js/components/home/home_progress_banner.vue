@@ -77,13 +77,8 @@ defineProps<{
   height: 14.222px;
 }
 
-/*
- * Figma 18:1051 содержит жёсткий перенос после «completa». Ограничение ширины
- * воспроизводит его на мобильной композиции, не внося перенос в данные:
- * «…completa» — 211 px, «…completa tutti» — 242 px при 13 px Geist SemiBold.
- */
 .home-banner__title {
-  min-height: 34px; /* Figma 18:1051 — две строки, lineHeight 100% */
+  min-height: 34px;
   max-width: 228px;
   padding-top: var(--home-line-trim-banner);
   color: var(--home-text-strong);
@@ -186,7 +181,6 @@ defineProps<{
     height: 20px;
   }
 
-  /* Десктопный узел 246:4926 однострочный. */
   .home-banner__title {
     min-height: 0;
     max-width: none;
@@ -218,7 +212,7 @@ defineProps<{
   }
 
   .home-banner__badge {
-    width: 126px; /* Figma node 246:4927 — фиксированная ширина фрейма */
+    width: 126px;
     box-sizing: border-box;
     align-self: center;
     grid-area: badge;
