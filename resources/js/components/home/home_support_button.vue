@@ -30,7 +30,7 @@ const accessibleName = computed<string>(() =>
 .home-support {
   position: relative;
   display: inline-flex;
-  width: 156px; /* Figma node 1:41 — фиксированная ширина фрейма */
+  width: 156px;
   height: 39px;
   box-sizing: border-box;
   align-items: center;
@@ -53,7 +53,6 @@ const accessibleName = computed<string>(() =>
   flex: none;
 }
 
-/* Figma 1:44: геометрия 14 × 14 px, обводка расширяет контур до 15.273 px. */
 .home-support__icon img {
   width: 15.273px;
   height: 15.273px;

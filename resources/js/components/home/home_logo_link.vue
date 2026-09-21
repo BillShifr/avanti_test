@@ -40,7 +40,7 @@ withDefaults(
 }
 
 .home-logo--desktop {
-  width: 152.01px; /* Figma node 1:22 */
+  width: 152.01px;
   height: 39px;
   gap: 12px;
   font-size: 32px;
@@ -48,12 +48,12 @@ withDefaults(
 }
 
 .home-logo--desktop .home-logo__mark {
-  width: 48.147px; /* Figma node 1:23 */
+  width: 48.147px;
   height: 37.566px;
 }
 
 .home-logo--mobile {
-  width: 104px; /* Figma node 18:970 */
+  width: 104px;
   height: 29px;
   gap: 6px;
   align-items: flex-end;
@@ -62,10 +62,9 @@ withDefaults(
   line-height: 27px;
 }
 
-/* Figma 18:972 прижат к верху фрейма, 18:971 — к низу. */
 .home-logo--mobile .home-logo__mark {
   align-self: flex-start;
-  width: 34px; /* Figma node 18:972 */
+  width: 34px;
   height: 26px;
 }
 </style>

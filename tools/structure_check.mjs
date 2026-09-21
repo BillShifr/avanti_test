@@ -1,13 +1,6 @@
 #!/usr/bin/env node
 /**
- * Структурный контроль правил лида.
- *
- * Ломает сборку, когда:
- *  - имя Vue-файла не соответствует `<domain>_<purpose>.vue` в snake_case;
- *  - файл длиннее 300 строк;
- *  - в шаблоне встречается inline CSS (`style="…"`, `:style`) или inline JS
- *    (стрелочные функции и выражения в обработчиках, `v-html`);
- *  - в `<script>` есть `any`, `@ts-ignore` или `@ts-nocheck`.
+ * проверяет структурные правила проекта
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative, basename } from 'node:path'

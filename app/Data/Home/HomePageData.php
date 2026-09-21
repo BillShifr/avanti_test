@@ -5,11 +5,6 @@ declare(strict_types=1);
 namespace App\Data\Home;
 
 /**
- * Неизменяемая граница между приложением и Inertia-props страницы Home.
- *
- * Зеркало TypeScript-контракта `resources/js/types/home/home_page.types.ts`.
- * Eloquent-модели через эту границу не проходят.
- *
  * @phpstan-type HomeUserArray array{fullName: string, initials: string, email: string, avatarUrl: string}
  * @phpstan-type HomeNavigationArray list<array{key: string, label: string, href: string, isActive: bool}>
  * @phpstan-type HomeBreadcrumbArray list<array{label: string, href?: string}>

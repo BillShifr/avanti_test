@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   root: fileURLToPath(new URL('./preview', import.meta.url)),
-  // Локально сохраняем относительные assets. GitHub Pages workflow передаёт
-  // project-site base вида /<repository>/, чтобы прямые asset URL работали.
+  // локальная сборка использует относительные пути
+  // публикация передает путь репозитория через переменную окружения
   base: process.env.VITE_PAGES_BASE_PATH ?? './',
   plugins: [vue()],
   build: {

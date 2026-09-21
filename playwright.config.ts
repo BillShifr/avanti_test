@@ -47,9 +47,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         viewport: { width: 1440, height: 889 },
         /*
-         * Figma экспортирует PNG с серым сглаживанием текста, Chromium по умолчанию
-         * использует субпиксельное (LCD). Без этого флага каждый край глифа даёт
-         * цветную бахрому и растровое сравнение шумит на ~0.4 п.п.
+         * отключение цветного сглаживания уменьшает шум растрового сравнения
          */
         launchOptions: chromiumLaunchOptions,
       },

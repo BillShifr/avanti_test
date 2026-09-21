@@ -146,7 +146,6 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
 }
 
 @media (width < 768px) {
-  /* CoreText raster mobile-узлов 18:1054/1055 точнее совпадает при wght=520. */
   .home-check--complete .home-check__description {
     font-weight: 520;
   }
@@ -174,7 +173,6 @@ const isActionable = computed<boolean>(() => props.state !== 'complete' && Boole
   height: 28px;
 }
 
-/* Figma 246:4443: иконка прижата к левому краю круга, 246:4454 — по центру. */
 .home-check--current .home-check__status {
   justify-content: flex-start;
 }
