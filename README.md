@@ -105,27 +105,3 @@ Inertia props → `home_page.vue` → узкие компоненты. Eloquent 
 не попадает, деньги передаются в минорных единицах и форматируются
 чистой функцией `home_currency_formatter.ts`.
 
-## Приёмка по макету
-
-- `pnpm run test:visual` проверяет три вещи: координаты и размеры каждого
-  крупного блока против `spec/home-layout.json` (допуск 0 px для карточек,
-  1 px для текстовых боксов), растровое отличие от PNG-эталонов Figma и
-  браузерные regression-снимки с `maxDiffPixels: 0`.
-- `actual` / `expected` / `diff` / 50%-`overlay` складываются в `tests/visual/output/` и
-  прикладываются к прогону как артефакты.
-- Достигнутое отличие живого Chromium-снимка: **desktop 0.152 %**, **mobile 0.345 %** —
-  оба viewport проходят единый лимит 0.35 % из `docs/QUALITY_GATES.md` §5.
-  Отдельная двунаправленная edge-проверка запрещает связные структурные
-  смещения больше 2 px. Калибровка и защита от ложноположительных/ложноотрицательных
-  результатов описаны в [docs/ADR-0001-typography.md](docs/ADR-0001-typography.md).
-  Figma-fidelity и regression PNG закреплены на `macos-26`/CoreText; Linux/Skia
-  остаётся отдельным функциональным cross-browser gate.
-
-## Известные ограничения
-
-- Конфликты контраста унаследованы из палитры Figma и залогированы в
-  [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md); правило `color-contrast`
-  вынесено из блокирующего набора axe.
-- Маршруты `/documenti`, `/profilo`, `/assistenza`, `/prelievo`, `/firma`
-  существуют только как именованные заглушки: они нужны, чтобы Home строил
-  ссылки через `route()`, а не через хардкод. Сами страницы вне scope.
