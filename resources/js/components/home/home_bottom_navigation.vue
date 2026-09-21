@@ -33,7 +33,6 @@ defineProps<{
   box-sizing: content-box;
   padding-bottom: env(safe-area-inset-bottom);
   background-color: var(--home-surface-card);
-
   box-shadow:
     inset 0 2px 0 var(--home-brand),
     inset 0 -3px 0 var(--home-brand),

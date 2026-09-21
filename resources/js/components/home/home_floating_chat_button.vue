@@ -45,7 +45,6 @@ const accessibleName = computed<string>(() =>
   width: 56.889px;
   height: 56.889px;
   box-sizing: border-box;
-
   border: 2px solid var(--home-brand);
   border-radius: 50%;
   box-shadow: var(--home-shadow-chat);

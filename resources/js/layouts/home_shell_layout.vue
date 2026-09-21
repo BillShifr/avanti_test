@@ -92,9 +92,7 @@ function handleNotifications(): void {
   justify-content: space-between;
   padding: 0 var(--home-space-gutter-mobile);
   background-color: var(--home-surface-card);
-
   gap: 24px;
-
   box-shadow: inset 0 0 0 1px var(--home-border-neutral);
 }
 

@@ -79,7 +79,6 @@ const icon = computed<NavigationIcon>(() => ICONS[props.itemKey])
 
 .home-bottom-item__link--active {
   color: var(--home-brand);
-
   font-weight: 520;
 }
 

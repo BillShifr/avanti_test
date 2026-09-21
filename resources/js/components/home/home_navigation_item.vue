@@ -65,7 +65,6 @@ const icon = computed<NavigationIcon>(
   padding: 10px 12px;
   border-radius: var(--home-radius-control);
   background-color: var(--home-surface-page);
-
   box-shadow: inset 0 0 0 1px var(--home-border-soft);
   color: var(--home-text-strong);
   font-size: 14px;

@@ -86,7 +86,6 @@ function handleToggle(): void {
 .home-checklist__heading {
   display: flex;
   flex-direction: column;
-
   gap: 3px;
 }
 
