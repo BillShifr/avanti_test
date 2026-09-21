@@ -104,4 +104,3 @@ docs/                  план, стек, roadmap, quality gates, ADR, дост
 Inertia props → `home_page.vue` → узкие компоненты. Eloquent во фронтенд
 не попадает, деньги передаются в минорных единицах и форматируются
 чистой функцией `home_currency_formatter.ts`.
-
